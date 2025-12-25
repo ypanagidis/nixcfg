@@ -50,10 +50,9 @@
     enable = true;
     keyboards.default = {
       ids = [ "*" ];
-      settings = {
-        main = {
-          "alt+backspace" = "C-backspace";
-        };
+      settings.main = {
+        "leftalt+backspace" = "C-backspace";
+        "rightalt+backspace" = "C-backspace"; # optional
       };
     };
   };
