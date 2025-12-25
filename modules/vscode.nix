@@ -25,7 +25,7 @@ let
 in
 {
   home.packages = [
-    pkgs.nodejs_22
+    pkgs.nixfmt
   ];
 
   programs.vscode = {
@@ -47,6 +47,10 @@ in
       mkt.dbaeumer."vscode-eslint"
       mkt.editorconfig.editorconfig
       mkt.eamodio.gitlens
+
+      #Theme
+      mkt.sdras."night-owl"
+
     ];
   };
 

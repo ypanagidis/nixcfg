@@ -82,10 +82,19 @@
     wireplumber.enable = true;
   };
 
+  # Shell
+  programs.zsh.enable = true;
+
+  # Fonts
+  fonts.packages = with pkgs; [
+    nerd-fonts.jetbrains-mono
+  ];
+
   # User
   users.users.yiannis = {
     isNormalUser = true;
     description = "Yiannis Panagidis";
+    shell = pkgs.zsh;
     extraGroups = [
       "networkmanager"
       "wheel"
@@ -124,7 +133,7 @@
 
     # Nix tooling (used by VS Code settings)
     nil
-    alejandra
+    prismlauncher
   ];
 
   system.stateVersion = "25.11";

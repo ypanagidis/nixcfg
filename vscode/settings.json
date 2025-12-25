@@ -127,7 +127,6 @@
     { "before": ["g", "s", "a", "<"], "after": ["S", "<"] }
   ],
   "vim.useSystemClipboard": true,
-  "workbench.colorTheme": "Lukin Theme",
   "workbench.settings.editor": "json",
   "workbench.sideBar.location": "left",
   "workbench.startupEditor": "none",
@@ -203,5 +202,6 @@
   "editor.wordBasedSuggestions": "off",
   "biome.lsp.bin": "./node_modules/.bin/biome",
   "typescript.experimental.useTsgo": true,
-  "cursor.composer.shouldChimeAfterChatFinishes": true
+  "cursor.composer.shouldChimeAfterChatFinishes": true,
+  "workbench.colorTheme": "Night Owl Light"
 }
