@@ -116,6 +116,7 @@
 
   # Firefox via module
   programs.firefox.enable = true;
+  programs.nix-ld.enable = true;
 
   # System packages (VS Code is managed via Home Manager in /etc/nixos/home.nix)
   environment.systemPackages = with pkgs; [
@@ -149,6 +150,14 @@
     lm_sensors
     smartmontools # drive temps
     nvme-cli # nvme temps (optional)
+
+    stdenv.cc.cc.lib
+    fuse3
+    icu
+    zlib
+    nss
+    openssl
+    expat
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
