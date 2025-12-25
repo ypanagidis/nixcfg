@@ -14,10 +14,10 @@
     ./modules/vscode
     ./modules/shell
     ./modules/cursor
+    ./modules/btop
     ./modules/ghostty.nix
     ./modules/gh.nix
     ./modules/lazygit.nix
     ./modules/direnv.nix
-    ./modules/btop.nix
   ];
 }

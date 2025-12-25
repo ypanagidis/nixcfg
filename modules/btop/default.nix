@@ -4,11 +4,11 @@
   programs.btop = {
     enable = true;
     themes = {
-      catppuccin-latte = ./catppuccin-latte.theme;
+      catppuccin-latte = ./catppuccin_latte.theme;
     };
 
     settings = {
-      color_theme = 'catppuccin-latte'
+      color_theme = "catppuccin-latte";
     };
   };
 }
