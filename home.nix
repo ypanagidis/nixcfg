@@ -19,5 +19,7 @@
     ./modules/gh.nix
     ./modules/lazygit.nix
     ./modules/direnv.nix
+    ./modules/fzf.nix
+    ./modules/eza.nix
   ];
 }
