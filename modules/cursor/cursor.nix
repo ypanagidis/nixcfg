@@ -3,7 +3,7 @@
 }:
 
 pkgs.appimageTools.wrapType2 {
-  name = "cursor";
+  pname = "cursor";
   version = "latest"; # We don't care about versions here
 
   src = pkgs.fetchurl {

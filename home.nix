@@ -13,6 +13,7 @@
   imports = [
     ./modules/vscode
     ./modules/shell
+    ./modules/cursor
     ./modules/ghostty.nix
     ./modules/gh.nix
     ./modules/lazygit.nix
