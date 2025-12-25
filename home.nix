@@ -14,6 +14,6 @@
     ./modules/vscode.nix
     ./modules/zsh.nix
     ./modules/ghostty.nix
-    ./modules/steam.nix
+    ./modules/gh.nix
   ];
 }

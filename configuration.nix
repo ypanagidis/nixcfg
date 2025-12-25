@@ -3,6 +3,7 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ./modules/steam.nix
   ];
 
   # Enable flakes system-wide
@@ -51,7 +52,10 @@
 
   # NVIDIA
   services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.graphics.enable = true;
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
 
   hardware.nvidia = {
     modesetting.enable = true;
@@ -63,6 +67,12 @@
 
     open = true;
   };
+
+  #Kernel Modules
+  boot.kernelModules = [
+    "k10temp"
+    "asus_ec_sensors"
+  ];
 
   # Printing
   services.printing.enable = true;
@@ -134,7 +144,14 @@
     # Nix tooling (used by VS Code settings)
     nil
     prismlauncher
+
+    # Sensors
+    lm_sensors
+    smartmontools # drive temps
+    nvme-cli # nvme temps (optional)
   ];
+
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   system.stateVersion = "25.11";
 }
