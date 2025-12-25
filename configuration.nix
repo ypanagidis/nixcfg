@@ -118,13 +118,11 @@
   programs.firefox.enable = true;
   programs.nix-ld.enable = true;
 
-  # System packages (VS Code is managed via Home Manager in /etc/nixos/home.nix)
   environment.systemPackages = with pkgs; [
     vim
     chromium
     discord
 
-    # Tools you were missing earlier
     usbutils # lsusb
     pciutils # lspci
     alsa-utils # aplay
@@ -158,6 +156,8 @@
     nss
     openssl
     expat
+    bat
+
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;

@@ -18,5 +18,6 @@
     ./modules/gh.nix
     ./modules/lazygit.nix
     ./modules/direnv.nix
+    ./modules/btop.nix
   ];
 }
