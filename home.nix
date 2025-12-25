@@ -11,15 +11,8 @@
   ];
 
   imports = [
-    ./modules/vscode
-    ./modules/shell
-    ./modules/cursor
-    ./modules/btop
-    ./modules/ghostty.nix
-    ./modules/gh.nix
-    ./modules/lazygit.nix
-    ./modules/direnv.nix
-    ./modules/fzf.nix
-    ./modules/eza.nix
+    ./modules/ides
+    ./modules/clis
+    ./modules/terminals.nix
   ];
 }
