@@ -14,6 +14,6 @@
     eza.enable = true;
     fzf.enable = true;
     lazygit.enable = true;
-    gh.enable = true; # prefer this instead of home.packages when possible
+    gh.enable = true;
   };
 }
