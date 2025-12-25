@@ -11,8 +11,8 @@
   ];
 
   imports = [
-    ./modules/vscode.nix
-    ./modules/zsh.nix
+    ./modules/vscode
+    ./modules/shell
     ./modules/ghostty.nix
     ./modules/gh.nix
   ];
