@@ -15,5 +15,6 @@
     ./modules/shell
     ./modules/ghostty.nix
     ./modules/gh.nix
+    ./modules/lazygit.nix
   ];
 }
