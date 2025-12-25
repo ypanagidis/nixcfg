@@ -74,6 +74,15 @@
     "asus_ec_sensors"
   ];
 
+  boot.kernelParams = [
+    "mem_sleep_default=s2idle"
+    "usbcore.autosuspend=-1"
+  ];
+
+  systemd.sleep.extraConfig = ''
+    MemorySleepMode=s2idle
+  '';
+
   # Printing
   services.printing.enable = true;
 
