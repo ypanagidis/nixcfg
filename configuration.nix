@@ -6,7 +6,10 @@
   ];
 
   # Enable flakes system-wide
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   # Bootloader
   boot.loader.systemd-boot.enable = true;
@@ -43,6 +46,18 @@
     variant = "";
   };
 
+  services.keyd = {
+    enable = true;
+    keyboards.default = {
+      ids = [ "*" ];
+      settings = {
+        main = {
+          "alt+backspace" = "C-backspace";
+        };
+      };
+    };
+  };
+
   # Allow unfree packages (needed for NVIDIA + Discord)
   nixpkgs.config.allowUnfree = true;
 
@@ -68,7 +83,7 @@
   services.hardware.bolt.enable = true;
 
   # Audio: PipeWire
-  services.pulseaudio.enable = false;  # renamed from hardware.pulseaudio
+  services.pulseaudio.enable = false; # renamed from hardware.pulseaudio
   security.rtkit.enable = true;
 
   services.pipewire = {
@@ -83,7 +98,10 @@
   users.users.yiannis = {
     isNormalUser = true;
     description = "Yiannis Panagidis";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
     packages = with pkgs; [
       kdePackages.kate
     ];
@@ -99,10 +117,10 @@
     discord
 
     # Tools you were missing earlier
-    usbutils          # lsusb
-    pciutils          # lspci
-    alsa-utils        # aplay
-    pulseaudio        # pactl (works with pipewire-pulse)
+    usbutils # lsusb
+    pciutils # lspci
+    alsa-utils # aplay
+    pulseaudio # pactl (works with pipewire-pulse)
     pavucontrol
 
     # Dev basics
@@ -123,4 +141,3 @@
 
   system.stateVersion = "25.11";
 }
-
