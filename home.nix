@@ -17,5 +17,6 @@
     ./modules/ghostty.nix
     ./modules/gh.nix
     ./modules/lazygit.nix
+    ./modules/direnv.nix
   ];
 }

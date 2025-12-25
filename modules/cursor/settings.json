@@ -12,7 +12,7 @@
   "typescript.preferences.importModuleSpecifier": "project-relative",
   "typescript.updateImportsOnFileMove.enabled": "always",
 
-  "typescript.experimental.useTsgo": false,
+  "typescript.experimental.useTsgo": true,
   "typescript.tsserver.maxTsServerMemory": 8192,
 
   "vim.foldfix": true,
