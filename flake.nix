@@ -8,16 +8,37 @@
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nix-vscode-extensions = {
+      url = "github:nix-community/nix-vscode-extensions";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      nix-vscode-extensions,
+      ...
+    }:
     let
       system = "x86_64-linux";
-    in {
+    in
+    {
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
         inherit system;
 
         modules = [
+          # Add the overlay so pkgs.nix-vscode-extensions is available everywhere
+          (
+            { ... }:
+            {
+              nixpkgs.overlays = [ nix-vscode-extensions.overlays.default ];
+            }
+          )
+
           ./configuration.nix
           home-manager.nixosModules.home-manager
 
@@ -30,4 +51,3 @@
       };
     };
 }
-

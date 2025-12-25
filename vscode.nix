@@ -1,0 +1,56 @@
+{ config, pkgs, ... }:
+let
+  # From nix-vscode-extensions overlay:
+  # pkgs.nix-vscode-extensions.{vscode-marketplace, open-vsx, ...}
+  mkt = pkgs.nix-vscode-extensions.vscode-marketplace;
+
+  settingsRaw = builtins.readFile ../vscode/settings.json;
+  keybindingsRaw = builtins.readFile ../vscode/keybindings.json;
+
+  # Patch macOS-only bits + the hardcoded node path.
+  settingsPatched =
+    builtins.replaceStrings
+      [
+        "\"terminal.external.osxExec\": \"Ghostty.app\","
+        "/Users/yiannis/.nvm/versions/node/v24.10.0/bin/node"
+      ]
+      [
+        "\"terminal.external.linuxExec\": \"konsole\","
+        "${config.home.profileDirectory}/bin/node"
+      ]
+      settingsRaw;
+
+  # You only had cmd+i in your keybindings; patch to something usable on Linux.
+  keybindingsPatched = builtins.replaceStrings [ "\"cmd+i\"" ] [ "\"ctrl+alt+i\"" ] keybindingsRaw;
+in
+{
+  home.packages = [
+    pkgs.nodejs_22
+  ];
+
+  programs.vscode = {
+    enable = true;
+    package = pkgs.vscode;
+
+    # Keep this if you still want to install random extras manually in the UI.
+    mutableExtensionsDir = true;
+
+    profiles.default.extensions = [
+      # Vim + TS native preview
+      mkt.vscodevim.vim
+      mkt.typescriptteam."native-preview"
+
+      # Your existing stuff (marketplace versions)
+      mkt.jnoortheen."nix-ide"
+      mkt.bbenoist.nix
+      mkt.esbenp."prettier-vscode"
+      mkt.dbaeumer."vscode-eslint"
+      mkt.editorconfig.editorconfig
+      mkt.eamodio.gitlens
+    ];
+  };
+
+  # Write your JSONC files exactly (VS Code accepts comments even though it's .json).
+  xdg.configFile."Code/User/settings.json".text = settingsPatched;
+  xdg.configFile."Code/User/keybindings.json".text = keybindingsPatched;
+}
