@@ -175,6 +175,11 @@
     expat
   ];
 
+  environment.sessionVariables = {
+    # Fixes blank/grey screens and popups in Java apps on Wayland
+    _JAVA_AWT_WM_NONREPARENTING = "1";
+  };
+
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   system.stateVersion = "25.11";

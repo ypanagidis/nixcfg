@@ -17,7 +17,6 @@
 
   outputs =
     {
-      self,
       nixpkgs,
       home-manager,
       nix-vscode-extensions,

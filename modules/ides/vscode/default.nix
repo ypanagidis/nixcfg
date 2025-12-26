@@ -4,8 +4,8 @@ let
   # pkgs.nix-vscode-extensions.{vscode-marketplace, open-vsx, ...}
   mkt = pkgs.nix-vscode-extensions.vscode-marketplace;
 
-  settingsRaw = builtins.readFile ../vscode/settings.json;
-  keybindingsRaw = builtins.readFile ../vscode/keybindings.json;
+  settingsRaw = builtins.readFile ./settings.json;
+  keybindingsRaw = builtins.readFile ./keybindings.json;
 
   # Patch macOS-only bits + the hardcoded node path.
   settingsPatched =
