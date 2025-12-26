@@ -4,6 +4,7 @@
   imports = [
     ./hardware-configuration.nix
     ./modules/steam.nix
+    ./modules/crapple-display.nix
   ];
 
   # Enable flakes system-wide
@@ -122,6 +123,9 @@
       kdePackages.kate
     ];
   };
+
+  # Apple Studio Display
+  hardware.apple-studio-display.enable = true;
 
   # Firefox via module
   programs.firefox.enable = true;

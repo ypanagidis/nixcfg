@@ -6,7 +6,8 @@
     settings = {
       font-size = 14;
       theme = "Ayu Mirage";
-      gtk-titlebar-hide-when-maximized = true;
+      window-decoration = false;
+      gtk-titlebar = false;
     };
   };
 }
