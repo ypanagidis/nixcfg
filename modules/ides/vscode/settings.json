@@ -203,5 +203,5 @@
   "biome.lsp.bin": "./node_modules/.bin/biome",
   "typescript.experimental.useTsgo": true,
   "cursor.composer.shouldChimeAfterChatFinishes": true,
-  "workbench.colorTheme": "Night Owl Light"
+  "workbench.colorTheme": "Ayu Mirage"
 }

@@ -165,8 +165,6 @@
     nss
     openssl
     expat
-    bat
-
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;

@@ -52,6 +52,19 @@
         "
       fi
       [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
+
+      function re() {
+        pushd ~/nixcfg > /dev/null && \
+        sudo nixos-rebuild switch --flake .#nixos && \
+        popd > /dev/null
+      }
+
+      alias lgit="lazygit"
+      alias p="pnpm"
+      alias cm="cd ~/Developer/Work/UP/mono/"
+      alias cs="cd ~/Developer/sandbox/"
+      alias cn="cd ~/nixcfg/"
+
       if type eza &>/dev/null; then
         alias l="eza --icons=always"
         alias la="eza -a --icons=always"
@@ -69,8 +82,6 @@
         alias lta4="eza -lTag --level=4 --icons=always"
         alias lta="eza -lTag --icons=always"
       fi
-      alias lg="lazygit"
-      alias p="pnpm"
     '';
   };
 

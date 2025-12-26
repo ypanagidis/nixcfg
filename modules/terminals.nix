@@ -5,7 +5,8 @@
     enable = true;
     settings = {
       font-size = 14;
-      theme = "Night Owlish Light";
+      theme = "Ayu Mirage";
+      gtk-titlebar-hide-when-maximized = true;
     };
   };
 }

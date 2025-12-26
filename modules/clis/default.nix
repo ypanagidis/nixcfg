@@ -15,5 +15,6 @@
     fzf.enable = true;
     lazygit.enable = true;
     gh.enable = true;
+    bat.enable = true;
   };
 }

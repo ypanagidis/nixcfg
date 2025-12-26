@@ -39,7 +39,7 @@
   "editor.accessibilitySupport": "off",
   "editor.wordBasedSuggestions": "off",
   "cursor.composer.shouldChimeAfterChatFinishes": true,
-  "workbench.colorTheme": "Night Owl Light",
+  "workbench.colorTheme": "Ayu Mirage",
 
   "vim.insertModeKeyBindingsNonRecursive": [
     { "after": ["<esc>"], "before": ["j", "k"] },

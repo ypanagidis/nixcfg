@@ -48,9 +48,9 @@ in
       mkt.editorconfig.editorconfig
       mkt.eamodio.gitlens
 
-      #Theme
+      #Themes
       mkt.sdras."night-owl"
-
+      mkt.teabyii.ayu
     ];
   };
 
