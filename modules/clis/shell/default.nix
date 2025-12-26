@@ -29,6 +29,7 @@
 
     # initExtra is deprecated → use initContent
     initContent = ''
+      bindkey '^f' clear-screen
       # fzf: use fd for listing + bat/eza previews
       if type fzf &>/dev/null; then
         export FZF_DEFAULT_COMMAND='fd --hidden --follow --exclude .git'
