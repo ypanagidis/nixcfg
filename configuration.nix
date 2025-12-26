@@ -26,6 +26,9 @@
 
   i18n.defaultLocale = "en_US.UTF-8";
 
+  # Docker
+  virtualisation.docker.enable = true;
+
   # X11 + KDE Plasma 6
   services.xserver.enable = true;
 
@@ -118,6 +121,7 @@
     extraGroups = [
       "networkmanager"
       "wheel"
+      "docker"
     ];
     packages = with pkgs; [
       kdePackages.kate
