@@ -42,11 +42,29 @@
 
   services.keyd = {
     enable = true;
-    keyboards.default = {
-      ids = [ "*" ];
-      settings.main = {
-        "leftalt+backspace" = "C-backspace";
-        "rightalt+backspace" = "C-backspace"; # optional
+    keyboards = {
+      default = {
+        ids = [ "*" ];
+        settings = {
+          main = {
+            leftalt = "layer(alt_nav)";
+            rightalt = "layer(alt_nav)";
+            leftmeta = "layer(cmd_nav)";
+            rightmeta = "layer(cmd_nav)";
+          };
+          "alt_nav:A" = {
+            left = "C-left";
+            right = "C-right";
+            # Sends Ctrl+Backspace (Usually ^H)
+            backspace = "C-backspace";
+          };
+          "cmd_nav:M" = {
+            left = "home";
+            right = "end";
+            # Sends Shift+Home, then Backspace
+            backspace = "macro(S-home backspace)";
+          };
+        };
       };
     };
   };
