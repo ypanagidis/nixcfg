@@ -4,8 +4,7 @@
     enable = true;
 
     extraLuaConfig =
-      builtins.readFile ./nvim/lua/options.lua
-      + builtins.readFile ./nvim/lua/keymaps.lua;
+      builtins.readFile ./nvim/lua/options.lua + builtins.readFile ./nvim/lua/keymaps.lua;
 
     plugins = with pkgs.vimPlugins; [
       # LSP
@@ -81,7 +80,7 @@
         type = "lua";
         config = builtins.readFile ./nvim/lua/plugins/ui.lua;
       }
-      lualine-nvim  # loaded by ui.lua
+      lualine-nvim # loaded by ui.lua
 
       # Navigation
       {
@@ -94,12 +93,27 @@
         type = "lua";
         config = builtins.readFile ./nvim/lua/plugins/tmux.lua;
       }
+      # Diagnostics list
+      {
+        plugin = trouble-nvim;
+        type = "lua";
+        config = builtins.readFile ./nvim/lua/plugins/trouble.lua;
+      }
+
+      # Better TS/JSX comments
+      {
+        plugin = nvim-ts-context-commentstring;
+        type = "lua";
+        config = builtins.readFile ./nvim/lua/plugins/ts-comments.lua;
+      }
+
     ];
 
     extraPackages = with pkgs; [
       # LSP servers
       typescript
       typescript-language-server
+      tsgo # TypeScript 7 native compiler
 
       # Formatters
       prettierd

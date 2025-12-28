@@ -29,9 +29,11 @@
     in
     {
       overlays.default = final: prev: {
-        # VSCode extensions
-        vscode-marketplace = nix-vscode-extensions.extensions.${prev.system}.vscode-marketplace;
-        open-vsx = nix-vscode-extensions.extensions.${prev.system}.open-vsx;
+        # VSCode extensions (nested to match existing config)
+        nix-vscode-extensions = {
+          vscode-marketplace = nix-vscode-extensions.extensions.${prev.system}.vscode-marketplace;
+          open-vsx = nix-vscode-extensions.extensions.${prev.system}.open-vsx;
+        };
 
         # External flake packages
         opencode = opencode-flake.packages.${prev.system}.default;
@@ -41,19 +43,10 @@
           pname = "tsgo";
           version = "7.0.0-dev";
           src = inputs.typescript-go;
-          vendorHash = pkgs.lib.fakeHash;
+          vendorHash = "sha256-1uZemqPsDxiYRVjLlC/UUP4ZXVCjocIBCj9uCzQHmog=";
           subPackages = [ "cmd/tsgo" ];
           doCheck = false;
         };
-      };
-
-      packages.x86_64-linux.tsgo = pkgs.buildGoModule {
-        pname = "tsgo";
-        version = "7.0.0-dev";
-        src = inputs.typescript-go;
-        vendorHash = pkgs.lib.fakeHash;
-        subPackages = [ "cmd/tsgo" ];
-        doCheck = false;
       };
     };
 }

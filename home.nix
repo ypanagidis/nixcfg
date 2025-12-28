@@ -13,12 +13,14 @@
     nodejs
     google-chrome
     high-tide
-    inputs.opencode-flake.packages.${pkgs.system}.default
+    pkgs.opencode
+    python3
   ];
 
   imports = [
     ./modules/ides
     ./modules/clis
     ./modules/terminals.nix
+    ./modules/obsedian.nix
   ];
 }

@@ -97,6 +97,7 @@
       alias cs="cd ~/Developer/sandbox/"
       alias cn="cd ~/nixcfg/"
       alias c="cursor ."
+      alias n="nvim"
 
       if type eza &>/dev/null; then
         alias l="eza --icons=always"
