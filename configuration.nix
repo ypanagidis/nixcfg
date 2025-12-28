@@ -88,6 +88,10 @@
     package = config.boot.kernelPackages.nvidiaPackages.production;
     # package = config.boot.kernelPackages.nvidiaPackages.beta;
 
+    powerManagement = {
+      enable = true;
+      finegrained = false;
+    };
     open = true;
   };
 
@@ -100,6 +104,10 @@
   boot.kernelParams = [
     "mem_sleep_default=s2idle"
     "usbcore.autosuspend=-1"
+    "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
+    "nvidia.NVreg_EnableS0ixPowerManagement=0"
+    "pcie_aspm=off"
+    "thunderbolt.force_power=auto"
   ];
 
   systemd.sleep.extraConfig = ''
@@ -194,12 +202,23 @@
     expat
   ];
 
+  # Thunderbolt controller rebind after wake - fixes USB4 DP tunnel
+  systemd.services.thunderbolt-rebind = {
+    description = "Rebind Thunderbolt controller after resume";
+    after = [ "post-resume.target" ];
+    wantedBy = [ "post-resume.target" ];
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.bash}/bin/bash -c 'sleep 2 && echo 0000:88:00.0 > /sys/bus/pci/drivers/thunderbolt/unbind; sleep 1; echo 0000:88:00.0 > /sys/bus/pci/drivers/thunderbolt/bind; sleep 1; echo 1 > /sys/bus/pci/rescan'";
+    };
+  };
+
   environment.sessionVariables = {
     # Fixes blank/grey screens and popups in Java apps on Wayland
     _JAVA_AWT_WM_NONREPARENTING = "1";
   };
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_6_12;
 
   system.stateVersion = "25.11";
 }
