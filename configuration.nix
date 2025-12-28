@@ -86,12 +86,7 @@
 
     # If RTX 5060 requires newer driver, switch to beta
     package = config.boot.kernelPackages.nvidiaPackages.production;
-    # package = config.boot.kernelPackages.nvidiaPackages.beta;
 
-    powerManagement = {
-      enable = true;
-      finegrained = false;
-    };
     open = true;
   };
 
@@ -99,15 +94,6 @@
   boot.kernelModules = [
     "k10temp"
     "asus_ec_sensors"
-  ];
-
-  boot.kernelParams = [
-    "mem_sleep_default=s2idle"
-    "usbcore.autosuspend=-1"
-    "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
-    "nvidia.NVreg_EnableS0ixPowerManagement=0"
-    "pcie_aspm=off"
-    "thunderbolt.force_power=auto"
   ];
 
   systemd.sleep.extraConfig = ''
@@ -207,9 +193,10 @@
     description = "Rebind Thunderbolt controller after resume";
     after = [ "post-resume.target" ];
     wantedBy = [ "post-resume.target" ];
+    path = [ pkgs.pciutils ];
     serviceConfig = {
       Type = "oneshot";
-      ExecStart = "${pkgs.bash}/bin/bash -c 'sleep 2 && echo 0000:88:00.0 > /sys/bus/pci/drivers/thunderbolt/unbind; sleep 1; echo 0000:88:00.0 > /sys/bus/pci/drivers/thunderbolt/bind; sleep 1; echo 1 > /sys/bus/pci/rescan'";
+      ExecStart = "${pkgs.bash}/bin/bash -c 'dev=$(lspci -D | grep \"ASM4242 PCIe Switch Upstream\" | cut -d\" \" -f1); echo 1 > /sys/bus/pci/devices/$dev/remove; sleep 2; echo 1 > /sys/bus/pci/rescan'";
     };
   };
 
@@ -218,7 +205,7 @@
     _JAVA_AWT_WM_NONREPARENTING = "1";
   };
 
-  boot.kernelPackages = pkgs.linuxPackages_6_12;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   system.stateVersion = "25.11";
 }
