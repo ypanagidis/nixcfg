@@ -13,6 +13,10 @@
       url = "github:nix-community/nix-vscode-extensions";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    opencode-flake = {
+      url = "github:aodhanhayter/opencode-flake";
+    };
+
   };
 
   outputs =
@@ -20,6 +24,7 @@
       nixpkgs,
       home-manager,
       nix-vscode-extensions,
+      opencode-flake,
       ...
     }:
     let
@@ -28,6 +33,10 @@
     {
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
         inherit system;
+
+        specialArgs = {
+          inherit opencode-flake;
+        };
 
         modules = [
           # Add the overlay so pkgs.nix-vscode-extensions is available everywhere
@@ -44,6 +53,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = { inherit opencode-flake; };
             home-manager.users.yiannis = import ./home.nix;
           }
         ];

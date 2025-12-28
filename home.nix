@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, opencode-flake, ... }:
 
 {
   home.stateVersion = "25.11";
@@ -13,6 +13,7 @@
     nodejs
     google-chrome
     high-tide
+    opencode-flake.packages.${pkgs.system}.default
   ];
 
   imports = [
