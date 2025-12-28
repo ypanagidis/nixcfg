@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ ... }:
 
 {
   programs.ghostty = {
@@ -8,6 +8,7 @@
       theme = "Ayu Mirage";
       window-decoration = false;
       gtk-titlebar = false;
+      copy-on-select = "clipboard";
     };
   };
 }

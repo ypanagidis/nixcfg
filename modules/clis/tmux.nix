@@ -26,6 +26,12 @@ in
     # ---------------------------------------------------------
     plugins = with pkgs; [
       tmuxPlugins.vim-tmux-navigator
+
+      # [NEW] Tmux Yank (Restores "Select to Copy" inside Tmux)
+      # Since Tmux hijacks the mouse, this plugin ensures that releasing the
+      # mouse button copies text to the system clipboard.
+      tmuxPlugins.yank
+
       {
         plugin = kanagawa;
         extraConfig = ''
@@ -47,7 +53,8 @@ in
       set -s escape-time 0
 
       # [FIX] Alt+Backspace (keyd sends Ctrl+h)
-      # Unbind Ctrl+h from root table so it passes through to Zsh for "Delete Word"
+      # vim-tmux-navigator usually hijacks Ctrl+h. We unbind it so
+      # the signal passes through to Zsh to delete the word.
       unbind -n C-h
 
       # [FIX] Alt+Arrows (Force Passthrough)
@@ -55,13 +62,12 @@ in
       bind -n C-Right send-keys Escape "[1;5C"
 
       # =========================================================
-      # 2. VISUALS & CURSOR (BACKGROUND FIX)
+      # 2. VISUALS & CURSOR
       # =========================================================
       set -ag terminal-overrides ",xterm-256color:RGB"
       set -ga terminal-overrides ',*:Ss=\E[%p1%d q:Se=\E[2 q'
 
-      # [CRITICAL] Force Transparent Background
-      # These lines override the theme's background to match your Ghostty config.
+      # Force transparent background (fixes theme conflict)
       set -g window-style 'bg=default'
       set -g window-active-style 'bg=default'
       set -g pane-border-style 'bg=default'
@@ -69,7 +75,7 @@ in
       set -g status-style 'bg=default'
 
       # =========================================================
-      # 3. STANDARD BINDINGS
+      # 3. PANE MANAGEMENT
       # =========================================================
       unbind %
       bind = split-window -h
@@ -83,9 +89,12 @@ in
       bind -r m resize-pane -Z
 
       # =========================================================
-      # 4. SCROLLING
+      # 4. SCROLLING & COPYING
       # =========================================================
       set-window-option -g mode-keys vi
+
+      # Configure Yank to copy to clipboard on mouse release
+      set -g @yank_action 'copy-pipe-and-cancel'
 
       bind u copy-mode        # Prefix + u
       bind v copy-mode        # Prefix + v
@@ -94,6 +103,7 @@ in
       bind -n WheelUpPane if-shell -F -t = "#{mouse_any_flag}" "send-keys -M" "if -Ft= '#{pane_in_mode}' 'send-keys -M' 'copy-mode -e'"
 
       bind-key -T copy-mode-vi v send-keys -X begin-selection
+      # 'y' is handled by tmux-yank, but keep as fallback
       bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
       bind-key -T copy-mode-vi C-u send-keys -X halfpage-up
       bind-key -T copy-mode-vi C-d send-keys -X halfpage-down
