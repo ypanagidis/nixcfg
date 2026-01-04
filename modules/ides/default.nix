@@ -4,9 +4,7 @@
     ./cursor
     ./vscode
     ./nvim-config/neovim.nix
+    ./datagrip/datagrip.nix
   ];
 
-  home.packages = with pkgs; [
-    jetbrains.datagrip
-  ];
 }

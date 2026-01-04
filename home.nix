@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 
 {
   home.stateVersion = "25.11";
@@ -20,6 +20,7 @@
   imports = [
     ./modules/ides
     ./modules/clis
+    ./modules/browsers
     ./modules/terminals.nix
     ./modules/obsedian.nix
   ];

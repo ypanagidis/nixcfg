@@ -13,17 +13,9 @@
       };
 
       # Keys here are written into .obsidian/appearance.json
-      # settings.appearance = {
-      #   # Put whatever your appearance.json uses (often something like theme/cssTheme/etc.)
-      #   # Example placeholder:
-      #   # cssTheme = "Minimal";
-      # };
-
-      # Optional: HM-managed themes (installs + can set active)
-      # settings.themes.minimal = {
-      #   pkg = ...;   # theme package derivation
-      #   enable = true;
-      # };
+      settings.appearance = {
+        cssTheme = "Ayu Mirage";
+      };
     };
   };
 }

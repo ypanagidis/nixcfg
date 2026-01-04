@@ -33,7 +33,7 @@ in
     package = pkgs.vscode;
 
     # Keep this if you still want to install random extras manually in the UI.
-    mutableExtensionsDir = true;
+    mutableExtensionsDir = false;
 
     profiles.default.extensions = [
       # Vim + TS native preview

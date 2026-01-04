@@ -90,6 +90,24 @@
       function re() {
         pushd ~/nixcfg > /dev/null && sudo nixos-rebuild switch --flake .#nixos && popd > /dev/null
       }
+      uc() {
+          if [[ -z "$1" ]]; then
+            echo "Usage: uc <version>"
+            return 1
+          fi
+          
+          local original_dir="$PWD"
+          cd ~/nixcfg/modules/ides/cursor || return 1
+          
+          if ./update-cursor.sh "$1"; then
+            echo "Rebuilding..."
+            sudo nixos-rebuild switch --flake ~/nixcfg
+          else
+            echo "No update needed or version invalid"
+          fi
+          
+          cd "$original_dir"
+      }
 
       alias lgit="lazygit"
       alias p="pnpm"

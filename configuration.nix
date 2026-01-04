@@ -96,10 +96,6 @@
     "asus_ec_sensors"
   ];
 
-  systemd.sleep.extraConfig = ''
-    MemorySleepMode=s2idle
-  '';
-
   # Printing
   services.printing.enable = true;
 
@@ -205,7 +201,25 @@
     _JAVA_AWT_WM_NONREPARENTING = "1";
   };
 
+  boot.kernelParams = [
+    "mem_sleep_default=s2idle"
+    "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
+    "pci=realloc=on,pcie_bus_perf,hpbussize=32"
+  ];
+
+  hardware.nvidia.powerManagement = {
+    enable = true;
+    finegrained = false;
+  };
+
   boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  powerManagement.powerDownCommands = ''
+    # Disable all PCI device wakes to prevent spurious wake from S3
+    for dev in /sys/bus/pci/devices/*/power/wakeup; do
+      echo disabled > "$dev" 2>/dev/null || true
+    done
+  '';
 
   system.stateVersion = "25.11";
 }
