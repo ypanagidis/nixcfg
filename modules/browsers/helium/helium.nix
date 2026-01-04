@@ -2,10 +2,10 @@
 
 pkgs.appimageTools.wrapType2 {
   pname = "helium-browser";
-  version = "0.7.7.1";
+  version = "0.7.9.1";
   src = pkgs.fetchurl {
-    url = "https://github.com/imputnet/helium-linux/releases/download/0.7.7.1/helium-0.7.7.1-x86_64.AppImage";
-    sha256 = "sha256-qEHUFzCwsCyFNLFCC62wo2x1lr/boAI/UDsaaNP1vrc="; # nix will tell you
+    url = "https://github.com/imputnet/helium-linux/releases/download/0.7.9.1/helium-0.7.9.1-x86_64.AppImage";
+    sha256 = "08vgld73dyzf6yg9rswxqza6rnii1ck97wvjha3ly9jgs9sbrp7b"; # nix will tell you
   };
   extraPkgs =
     pkgs: with pkgs; [
