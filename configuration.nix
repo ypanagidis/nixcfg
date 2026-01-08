@@ -21,14 +21,27 @@
   # Networking
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
+  networking.firewall.trustedInterfaces = [ "virbr0" ];
 
   # Time zone / locales
   time.timeZone = "Europe/Athens";
 
   i18n.defaultLocale = "en_US.UTF-8";
 
+  # Virtualisation
   # Docker
   virtualisation.docker.enable = true;
+  #libvirtd
+  virtualisation.libvirtd = {
+    enable = true;
+    qemu = {
+      package = pkgs.qemu_kvm;
+      ovmf.enable = true;
+      ovmf.packages = [ pkgs.OVMFFull.fd ];
+      swtpm.enable = true; # TPM emulation for Windows 11
+      runAsRoot = true; # Required for USB passthrough
+    };
+  };
 
   # X11 + KDE Plasma 6
   services.xserver.enable = true;
@@ -131,6 +144,8 @@
       "networkmanager"
       "wheel"
       "docker"
+      "libvirtd"
+      "kvm"
     ];
     packages = with pkgs; [
       kdePackages.kate
@@ -182,6 +197,11 @@
     nss
     openssl
     expat
+
+    # Virtualisation deps
+    virt-manager
+    freerdp3
+    libnotify
   ];
 
   # Thunderbolt controller rebind after wake - fixes USB4 DP tunnel

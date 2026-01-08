@@ -108,6 +108,19 @@
           
           cd "$original_dir"
       }
+      uh() {
+        local original_dir="$PWD"
+        cd ~/nixcfg/modules/browsers/helium || return 1
+        
+        if ./update-helium.sh; then
+          echo "Rebuilding..."
+          sudo nixos-rebuild switch --flake ~/nixcfg
+        else
+          echo "No update needed or fetch failed"
+        fi
+        
+        cd "$original_dir"
+      }
 
       alias lgit="lazygit"
       alias p="pnpm"

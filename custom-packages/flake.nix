@@ -15,6 +15,16 @@
     };
 
     opencode-flake.url = "github:aodhanhayter/opencode-flake";
+
+    claude = {
+      url = "github:sadjow/claude-code-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    winapps = {
+      url = "github:winapps-org/winapps";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -22,6 +32,8 @@
       nixpkgs,
       nix-vscode-extensions,
       opencode-flake,
+      claude,
+      winapps,
       ...
     }@inputs:
     let
@@ -29,7 +41,7 @@
     in
     {
       overlays.default = final: prev: {
-        # VSCode extensions (nested to match existing config)
+        # VSCode extensions
         nix-vscode-extensions = {
           vscode-marketplace = nix-vscode-extensions.extensions.${prev.system}.vscode-marketplace;
           open-vsx = nix-vscode-extensions.extensions.${prev.system}.open-vsx;
@@ -37,6 +49,12 @@
 
         # External flake packages
         opencode = opencode-flake.packages.${prev.system}.default;
+
+        claude = claude.packages.${prev.system}.default;
+
+        # Winapps
+        winapps = winapps.packages.${prev.system}.winapps;
+        winapps-launcher = winapps.packages.${prev.system}.winapps-launcher;
 
         # Custom builds
         tsgo = final.buildGoModule {

@@ -8,13 +8,16 @@
     protonup-qt # manage extra Proton builds easily (GUI)
     protontricks # winetricks for Proton prefixes
     mangohud # performance overlay
-    claude-code
     pnpm
     nodejs
     google-chrome
     high-tide
     pkgs.opencode
     python3
+    bun
+    claude
+    winapps
+    winapps-launcher
   ];
 
   imports = [
