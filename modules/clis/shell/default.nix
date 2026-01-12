@@ -22,6 +22,7 @@
       ];
       extraConfig = ''
         export ZSH_CUSTOM="$HOME/.config/oh-my-zsh/custom"
+        export LIBVIRT_DEFAULT_URI="qemu:///system"
         VI_MODE_SET_CURSOR=true
       '';
     };

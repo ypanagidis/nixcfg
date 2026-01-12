@@ -1,33 +1,46 @@
-{ pkgs, ... }:
-
-pkgs.appimageTools.wrapType2 {
-  pname = "helium-browser";
-  version = "0.7.9.1";
-  src = pkgs.fetchurl {
-    url = "https://github.com/imputnet/helium-linux/releases/download/0.7.9.1/helium-0.7.9.1-x86_64.AppImage";
-    sha256 = "08vgld73dyzf6yg9rswxqza6rnii1ck97wvjha3ly9jgs9sbrp7b"; # nix will tell you
+{ lib, pkgs, ... }:
+let
+  version = "0.7.10.1";
+  sourceMap = {
+    x86_64-linux = pkgs.fetchurl {
+      url = "https://github.com/imputnet/helium-linux/releases/download/${version}/helium-${version}-x86_64.AppImage";
+      hash = "sha256-11xSlHIqmyyVwjjwt5FmLhp72P3m07PppOo7a9DbTcE=";
+    };
+    aarch64-linux = pkgs.fetchurl {
+      url = "https://github.com/imputnet/helium-linux/releases/download/${version}/helium-${version}-arm64.AppImage";
+      hash = "sha256-fmpyh4ZmsWZy65T04fwQ4m5dU0V9RuNzG3jiQaAEJgU=";
+    };
   };
-  extraPkgs =
-    pkgs: with pkgs; [
-      glib
-      nss
-      nspr
-      at-spi2-atk
-      cups
-      dbus
-      libdrm
-      gtk3
-      pango
-      cairo
-      xorg.libX11
-      xorg.libXcomposite
-      xorg.libXdamage
-      xorg.libXext
-      xorg.libXfixes
-      xorg.libXrandr
-      mesa
-      alsa-lib
-      libxkbcommon
-      wayland
+in
+pkgs.appimageTools.wrapType2 rec {
+  pname = "helium";
+  inherit version;
+  src =
+    sourceMap.${pkgs.stdenv.hostPlatform.system}
+      or (throw "Unsupported system: ${pkgs.stdenv.hostPlatform.system}");
+
+  extraInstallCommands =
+    let
+      contents = pkgs.appimageTools.extractType2 { inherit pname version src; };
+    in
+    ''
+      mkdir -p "$out/share/applications"
+      mkdir -p "$out/share/lib/helium"
+      cp -r ${contents}/opt/helium/locales "$out/share/lib/helium"
+      cp -r ${contents}/usr/share/* "$out/share"
+      cp "${contents}/${pname}.desktop" "$out/share/applications/"
+      substituteInPlace $out/share/applications/${pname}.desktop --replace-fail 'Exec=AppRun' 'Exec=${meta.mainProgram}'
+    '';
+
+  meta = {
+    description = "Private, fast, and honest web browser based on Chromium";
+    homepage = "https://github.com/imputnet/helium-chromium";
+    changelog = "https://github.com/imputnet/helium-linux/releases/tag/${version}";
+    platforms = [
+      "x86_64-linux"
+      "aarch64-linux"
     ];
+    license = lib.licenses.gpl3;
+    mainProgram = "helium";
+  };
 }

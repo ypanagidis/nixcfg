@@ -31,20 +31,21 @@
   # Virtualisation
   # Docker
   virtualisation.docker.enable = true;
-  #libvirtd
   virtualisation.libvirtd = {
     enable = true;
     qemu = {
       package = pkgs.qemu_kvm;
-      ovmf.enable = true;
-      ovmf.packages = [ pkgs.OVMFFull.fd ];
-      swtpm.enable = true; # TPM emulation for Windows 11
-      runAsRoot = true; # Required for USB passthrough
+      swtpm.enable = true;
+      runAsRoot = true;
     };
   };
 
   # X11 + KDE Plasma 6
   services.xserver.enable = true;
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.kdePackages.xdg-desktop-portal-kde ];
+  };
 
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
@@ -200,7 +201,11 @@
 
     # Virtualisation deps
     virt-manager
-    freerdp3
+    freerdp
+    (pkgs.runCommand "xfreerdp3-compat" { } ''
+      mkdir -p $out/bin
+      ln -s ${pkgs.freerdp}/bin/xfreerdp $out/bin/xfreerdp3
+    '')
     libnotify
   ];
 

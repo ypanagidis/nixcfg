@@ -186,11 +186,6 @@
   { "key": "q", "command": "cancelRenameInput", "when": "renameInputVisible" },
   {
     "key": "q",
-    "command": "workbench.action.closeMessages",
-    "when": "notificationCenterVisible || notificationToastsVisible"
-  },
-  {
-    "key": "q",
     "command": "workbench.action.closePanel",
     "when": "panelFocus || (panelVisible && !editorFocus)"
   }

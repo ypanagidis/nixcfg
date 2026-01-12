@@ -1,18 +1,15 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   home.packages = [
-    (import ./helium.nix { inherit pkgs; })
+    (import ./helium.nix { inherit lib pkgs; })
   ];
 
-  xdg.desktopEntries.helium-browser = {
-    name = "Helium";
-    genericName = "Web Browser";
-    exec = "helium-browser";
-    terminal = false;
-    categories = [
-      "Network"
-      "WebBrowser"
-    ];
-    icon = ./helium.png; # grab one from their repo or website
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "text/html" = "helium.desktop";
+      "x-scheme-handler/http" = "helium.desktop";
+      "x-scheme-handler/https" = "helium.desktop";
+    };
   };
 }

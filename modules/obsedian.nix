@@ -14,7 +14,7 @@
 
       # Keys here are written into .obsidian/appearance.json
       settings.appearance = {
-        cssTheme = "Ayu Mirage";
+        cssTheme = "AnuPpuccin";
       };
     };
   };
