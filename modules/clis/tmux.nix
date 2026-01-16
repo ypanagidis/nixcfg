@@ -17,7 +17,7 @@ in
 
     # 1. CORE SETTINGS
     # ---------------------------------------------------------
-    terminal = "screen-256color";
+    terminal = "tmux-256color";
     prefix = "C-s";
     mouse = true;
     baseIndex = 1;
@@ -35,10 +35,15 @@ in
       {
         plugin = kanagawa;
         extraConfig = ''
-          set -g @kanagawa-plugins "cpu-usage ram-usage powerline git time"
-          set -g @kanagawa-show-powerline true
-          set -g @kanagawa-military-time true
-          set -g @kanagawa-show-empty-plugins false
+          # =========================================================
+          # 0. PASSTHROUGH FOR LINKS & OSC SEQUENCES
+          # =========================================================
+            set -g allow-passthrough on
+            set -ga terminal-features "*:hyperlinks"
+            set -g @kanagawa-plugins "cpu-usage ram-usage git time"
+            set -g @kanagawa-show-powerline true
+            set -g @kanagawa-military-time true
+            set -g @kanagawa-show-empty-plugins true
         '';
       }
     ];

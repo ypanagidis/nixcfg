@@ -207,6 +207,7 @@
       ln -s ${pkgs.freerdp}/bin/xfreerdp $out/bin/xfreerdp3
     '')
     libnotify
+    libreoffice-fresh
   ];
 
   # Thunderbolt controller rebind after wake - fixes USB4 DP tunnel

@@ -20,6 +20,7 @@
     claude
     winapps
     winapps-launcher
+    bruno
   ];
 
   # Crapindows
