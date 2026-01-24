@@ -8,7 +8,7 @@ pkgs.appimageTools.wrapType2 {
 
   src = pkgs.fetchurl {
     url = "https://api2.cursor.sh/updates/download/golden/linux-x64/cursor/2.3";
-    sha256 = "1sn3fzby9nn388azyp73fqsmnq51n9z42q208prn3l2zw44brjv6";
+    sha256 = "0xvdqxk1mvk5kiysqmnmpg7nh1nvfgx8pn6xqjbkfj1kff921m92";
   };
 
   extraPkgs =

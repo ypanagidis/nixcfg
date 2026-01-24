@@ -10,6 +10,7 @@ vim.lsp.config("tsgo", {
 -- Enable servers (configs come from nvim-lspconfig)
 vim.lsp.enable({
 	"tsgo",
+	"oxlint",
 	-- Add more servers as needed:
 	-- "lua_ls",
 	-- "pyright",

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, pkgsUnstable, ... }:
 {
   programs.neovim = {
     enable = true;
@@ -114,6 +114,7 @@
       typescript
       typescript-language-server
       tsgo # TypeScript 7 native compiler
+      oxlint
 
       # Formatters
       prettierd
@@ -127,6 +128,8 @@
 
       # Snacks dependencies
       lazygit
+      pkgsUnstable.oxfmt
     ];
+
   };
 }
