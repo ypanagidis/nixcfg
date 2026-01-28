@@ -1,10 +1,12 @@
 local telescope = require("telescope")
+local actions = require("telescope.actions")
 local builtin = require("telescope.builtin")
 
 telescope.setup({
   defaults = {
-    prompt_prefix = " ",
-    selection_caret = " ",
+    prompt_prefix = "> ",
+    selection_caret = "> ",
+    entry_prefix = "  ",
     path_display = { "truncate" },
     sorting_strategy = "ascending",
     layout_config = {
@@ -17,10 +19,24 @@ telescope.setup({
     },
     mappings = {
       i = {
-        ["<C-j>"] = "move_selection_next",
-        ["<C-k>"] = "move_selection_previous",
-        ["<C-q>"] = "send_to_qflist",
-        ["<Esc>"] = "close",
+        ["<C-n>"] = actions.move_selection_next,
+        ["<C-p>"] = actions.move_selection_previous,
+        ["<C-j>"] = actions.move_selection_next,
+        ["<C-k>"] = actions.move_selection_previous,
+        ["<Down>"] = actions.move_selection_next,
+        ["<Up>"] = actions.move_selection_previous,
+        ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
+        ["<Esc>"] = actions.close,
+        ["<CR>"] = actions.select_default,
+      },
+      n = {
+        ["j"] = actions.move_selection_next,
+        ["k"] = actions.move_selection_previous,
+        ["<Down>"] = actions.move_selection_next,
+        ["<Up>"] = actions.move_selection_previous,
+        ["q"] = actions.close,
+        ["<Esc>"] = actions.close,
+        ["<CR>"] = actions.select_default,
       },
     },
   },

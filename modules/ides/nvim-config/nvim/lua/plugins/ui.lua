@@ -8,6 +8,9 @@ require("ayu").setup({
 })
 vim.cmd("colorscheme ayu-mirage")
 
+-- Fix Snacks picker directory path visibility (NonText is too dim in Ayu Mirage)
+vim.api.nvim_set_hl(0, "SnacksPickerDir", { link = "Comment" })
+
 -- Lualine
 require("lualine").setup({
   options = {

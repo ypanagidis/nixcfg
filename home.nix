@@ -8,7 +8,7 @@
 let
   pkgsUnstable = import inputs.nixpkgs-unstable {
     inherit (pkgs) system;
-    config = config.nixpkgs.config; # keeps allowUnfree etc consistent
+    config = pkgs.config;
   };
 in
 {
@@ -33,7 +33,7 @@ in
     winapps
     winapps-launcher
     bruno
-
+    haruna
     # example: pull ONE package from unstable:
     # pkgsUnstable.<packageName>
   ];

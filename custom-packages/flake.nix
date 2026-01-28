@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     typescript-go = {
       url = "github:microsoft/typescript-go";
@@ -30,6 +31,7 @@
   outputs =
     {
       nixpkgs,
+      nixpkgs-unstable,
       nix-vscode-extensions,
       opencode-flake,
       claude,
@@ -55,6 +57,38 @@
         # Winapps
         winapps = winapps.packages.${prev.system}.winapps;
         winapps-launcher = winapps.packages.${prev.system}.winapps-launcher;
+
+        # oxfmt 0.24.0 (override from nixpkgs-unstable's 0.23.0)
+        oxfmt =
+          let
+            base = nixpkgs-unstable.legacyPackages.${prev.system}.oxfmt;
+          in
+          base.overrideAttrs (old: rec {
+            version = "0.24.0";
+            src = final.fetchFromGitHub {
+              owner = "oxc-project";
+              repo = "oxc";
+              tag = "oxfmt_v${version}";
+              hash = "sha256-Sg9NtXRuQ0ZruK8a8k5EkeDOJ9v6uzpNzEQ/FY56ioY=";
+            };
+            env = (old.env or { }) // {
+              OXC_VERSION = version;
+            };
+            cargoDeps = final.rustPlatform.fetchCargoVendor {
+              inherit src;
+              hash = "sha256-sgIarCuUmSTAVPVr82rp4dQwzDMWESIbGgkCYEExz6o=";
+            };
+            pnpmDeps = final.pnpm_10.fetchDeps {
+              inherit src version;
+              pname = "oxfmt";
+              hash = "sha256-U+plQgqApzpTqbiiZdeCIFlEbKzp9shcAousmPv9Pi0=";
+              fetcherVersion = 2;
+              prePnpmInstall = ''
+                substituteInPlace pnpm-workspace.yaml pnpm-lock.yaml \
+                  --replace-fail "patchedDependencies:" "_patchedDependencies:"
+              '';
+            };
+          });
 
         # Custom builds
         tsgo = final.buildGoModule {

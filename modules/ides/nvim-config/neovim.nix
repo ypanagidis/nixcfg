@@ -1,4 +1,4 @@
-{ pkgs, pkgsUnstable, ... }:
+{ pkgs, ... }:
 {
   programs.neovim = {
     enable = true;
@@ -35,13 +35,13 @@
         config = builtins.readFile ./nvim/lua/plugins/treesitter.lua;
       }
 
-      # Telescope
-      plenary-nvim
-      {
-        plugin = telescope-nvim;
-        type = "lua";
-        config = builtins.readFile ./nvim/lua/plugins/telescope.lua;
-      }
+      # Telescope (commented out - using Snacks picker instead)
+      # plenary-nvim
+      # {
+      #   plugin = telescope-nvim;
+      #   type = "lua";
+      #   config = builtins.readFile ./nvim/lua/plugins/telescope.lua;
+      # }
 
       # Snacks (utilities)
       {
@@ -107,6 +107,41 @@
         config = builtins.readFile ./nvim/lua/plugins/ts-comments.lua;
       }
 
+      # AI Completion (Supermaven)
+      {
+        plugin = supermaven-nvim;
+        type = "lua";
+        config = builtins.readFile ./nvim/lua/plugins/supermaven.lua;
+      }
+
+      # Which-key (keybinding hints)
+      {
+        plugin = which-key-nvim;
+        type = "lua";
+        config = builtins.readFile ./nvim/lua/plugins/which-key.lua;
+      }
+
+      # Git signs in gutter
+      {
+        plugin = gitsigns-nvim;
+        type = "lua";
+        config = builtins.readFile ./nvim/lua/plugins/gitsigns.lua;
+      }
+
+      # TODO/FIXME highlighting
+      {
+        plugin = todo-comments-nvim;
+        type = "lua";
+        config = builtins.readFile ./nvim/lua/plugins/todo-comments.lua;
+      }
+
+      # Color code preview
+      {
+        plugin = nvim-colorizer-lua;
+        type = "lua";
+        config = builtins.readFile ./nvim/lua/plugins/colorizer.lua;
+      }
+
     ];
 
     extraPackages = with pkgs; [
@@ -122,13 +157,13 @@
       stylua
       nixfmt-rfc-style
 
-      # Telescope dependencies
+      # Snacks picker dependencies (also used by Telescope if re-enabled)
       ripgrep
       fd
 
       # Snacks dependencies
       lazygit
-      pkgsUnstable.oxfmt
+      oxfmt
     ];
 
   };

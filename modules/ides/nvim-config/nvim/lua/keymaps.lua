@@ -32,8 +32,16 @@ map("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Previous buffer" })
 map("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
 
 -- Keep cursor centered
-map("n", "<C-d>", "<C-d>zz", { desc = "Scroll down" })
-map("n", "<C-u>", "<C-u>zz", { desc = "Scroll up" })
+map("n", "<C-d>", function()
+	vim.g.snacks_animate_scroll = false
+	vim.cmd("normal! \x04zz")
+	vim.g.snacks_animate_scroll = true
+end, { desc = "Scroll down" })
+map("n", "<C-u>", function()
+	vim.g.snacks_animate_scroll = false
+	vim.cmd("normal! \x15zz")
+	vim.g.snacks_animate_scroll = true
+end, { desc = "Scroll up" })
 map("n", "n", "nzzzv", { desc = "Next search result" })
 map("n", "N", "Nzzzv", { desc = "Previous search result" })
 

@@ -1,9 +1,27 @@
 -- LSP Configuration
 
--- Configure ts_ls with more memory
+-- Configure tsgo with more memory and inlay hints
 vim.lsp.config("tsgo", {
 	init_options = {
 		maxTsServerMemory = 8192,
+		preferences = {
+			includeInlayParameterNameHints = "all",
+			includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+			includeInlayFunctionParameterTypeHints = true,
+			includeInlayVariableTypeHints = true,
+			includeInlayPropertyDeclarationTypeHints = true,
+			includeInlayFunctionLikeReturnTypeHints = true,
+			includeInlayEnumMemberValueHints = true,
+		},
+	},
+})
+
+-- Configure oxlint to disable auto-fix on save
+vim.lsp.config("oxlint", {
+	settings = {
+		oxc = {
+			fixKind = "none", -- Disable all auto-fixes (still shows diagnostics)
+		},
 	},
 })
 
@@ -23,27 +41,27 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(args)
 		local opts = { buffer = args.buf }
 
-		-- Navigation
-		vim.keymap.set("n", "gd", vim.lsp.buf.definition, vim.tbl_extend("force", opts, { desc = "Go to definition" }))
+		-- Navigation (using Snacks picker for nice display)
+		vim.keymap.set("n", "gd", function() Snacks.picker.lsp_definitions() end, vim.tbl_extend("force", opts, { desc = "Go to definition" }))
 		vim.keymap.set(
 			"n",
 			"gD",
-			vim.lsp.buf.declaration,
+			function() Snacks.picker.lsp_declarations() end,
 			vim.tbl_extend("force", opts, { desc = "Go to declaration" })
 		)
 		vim.keymap.set(
 			"n",
 			"gy",
-			vim.lsp.buf.type_definition,
+			function() Snacks.picker.lsp_type_definitions() end,
 			vim.tbl_extend("force", opts, { desc = "Go to type definition" })
 		)
 		vim.keymap.set(
 			"n",
 			"gi",
-			vim.lsp.buf.implementation,
-			vim.tbl_extend("force", opts, { desc = "Go to implementation" })
+			function() Snacks.picker.lsp_references() end,
+			vim.tbl_extend("force", opts, { desc = "Go to references" })
 		)
-		vim.keymap.set("n", "gr", vim.lsp.buf.references, vim.tbl_extend("force", opts, { desc = "Find references" }))
+		vim.keymap.set("n", "gr", function() Snacks.picker.lsp_references() end, vim.tbl_extend("force", opts, { desc = "Find references" }))
 
 		-- Info
 		vim.keymap.set("n", "K", vim.lsp.buf.hover, vim.tbl_extend("force", opts, { desc = "Hover" }))
