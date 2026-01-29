@@ -17,5 +17,14 @@
     lazygit.enable = true;
     gh.enable = true;
     bat.enable = true;
+    yazi = {
+      enable = true;
+      enableZshIntegration = true;
+      settings = {
+        manager = {
+          show_hidden = true;
+        };
+      };
+    };
   };
 }

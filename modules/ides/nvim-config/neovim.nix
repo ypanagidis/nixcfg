@@ -96,6 +96,11 @@
         config = builtins.readFile ./nvim/lua/plugins/oil.lua;
       }
       {
+        plugin = yazi-nvim;
+        type = "lua";
+        config = builtins.readFile ./nvim/lua/plugins/yazi.lua;
+      }
+      {
         plugin = vim-tmux-navigator;
         type = "lua";
         config = builtins.readFile ./nvim/lua/plugins/tmux.lua;
@@ -171,6 +176,9 @@
       # Snacks dependencies
       lazygit
       oxfmt
+
+      # Yazi file manager
+      yazi
     ];
 
   };
