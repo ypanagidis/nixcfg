@@ -36,6 +36,11 @@ require("noice").setup({
     },
   },
   views = {
+    hover = {
+      border = {
+        style = "rounded",
+      },
+    },
     cmdline_popup = {
       position = {
         row = 5,

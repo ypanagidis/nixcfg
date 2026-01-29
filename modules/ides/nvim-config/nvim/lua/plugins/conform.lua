@@ -24,8 +24,8 @@ conform.setup({
 	formatters = {
 		oxfmt = {
 			command = "oxfmt",
-			stdin = false, -- IMPORTANT for oxfmt
-			args = { "--write", "$FILENAME" }, -- $FILENAME is Conform's temp file here
+			stdin = true,
+			args = { "--stdin-filepath", "$FILENAME" },
 			cwd = util.root_file({ ".oxfmtrc.json", "package.json", ".git" }),
 		},
 	},
