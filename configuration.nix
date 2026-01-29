@@ -215,6 +215,7 @@
     '')
     libnotify
     libreoffice-fresh
+    neofetch
   ];
 
   # Thunderbolt controller rebind after wake - fixes USB4 DP tunnel

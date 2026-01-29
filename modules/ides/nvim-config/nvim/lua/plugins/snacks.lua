@@ -71,6 +71,39 @@ require("snacks").setup({
 					return item
 				end,
 			},
+			diagnostics = {
+				layout = { preset = "vertical" },
+			},
+		},
+		actions = {
+			list_scroll_right = function(picker)
+				if picker.list.win:valid() then
+					vim.api.nvim_win_call(picker.list.win.win, function()
+						vim.cmd("normal! 40zl")
+					end)
+				end
+			end,
+			list_scroll_left = function(picker)
+				if picker.list.win:valid() then
+					vim.api.nvim_win_call(picker.list.win.win, function()
+						vim.cmd("normal! 40zh")
+					end)
+				end
+			end,
+		},
+		win = {
+			input = {
+				keys = {
+					["zl"] = { "list_scroll_right", mode = "n", desc = "Scroll list right" },
+					["zh"] = { "list_scroll_left", mode = "n", desc = "Scroll list left" },
+				},
+			},
+			list = {
+				keys = {
+					["zl"] = { "list_scroll_right", desc = "Scroll list right" },
+					["zh"] = { "list_scroll_left", desc = "Scroll list left" },
+				},
+			},
 		},
 	},
 	quickfile = { enabled = true },

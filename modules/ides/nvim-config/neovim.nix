@@ -14,6 +14,13 @@
         config = builtins.readFile ./nvim/lua/plugins/lsp.lua;
       }
 
+      # LSP progress indicator
+      {
+        plugin = fidget-nvim;
+        type = "lua";
+        config = builtins.readFile ./nvim/lua/plugins/fidget.lua;
+      }
+
       # Formatting
       {
         plugin = conform-nvim;

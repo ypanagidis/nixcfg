@@ -1,7 +1,7 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 {
   home.packages = [
-    (import ./helium.nix { inherit lib pkgs; })
+    (pkgs.callPackage ./helium.nix { })
   ];
 
   xdg.mimeApps = {
