@@ -23,15 +23,14 @@
       custom-packages,
       ...
     }@inputs:
-    let
-      system = "x86_64-linux";
-    in
     {
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-        inherit system;
         specialArgs = { inherit inputs; };
         modules = [
-          { nixpkgs.overlays = [ custom-packages.overlays.default ]; }
+          {
+            nixpkgs.hostPlatform = "x86_64-linux";
+            nixpkgs.overlays = [ custom-packages.overlays.default ];
+          }
           ./configuration.nix
           home-manager.nixosModules.home-manager
           {

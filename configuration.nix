@@ -5,6 +5,8 @@
     ./hardware-configuration.nix
     ./modules/steam.nix
     ./modules/crapple-display.nix
+    ./modules/kdeconnect.nix
+    ./modules/sunshine.nix
   ];
 
   # Enable flakes system-wide
@@ -19,9 +21,14 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Networking
-  networking.hostName = "nixos";
+  networking.hostName = "nix-pc";
   networking.networkmanager.enable = true;
   networking.firewall.trustedInterfaces = [ "virbr0" ];
+  networking.firewall.allowedTCPPorts = [
+    4096
+    4000
+    3000
+  ];
 
   # Time zone / locales
   time.timeZone = "Europe/Athens";
@@ -135,6 +142,16 @@
     configDir = "/home/yiannis/.config/syncthing";
   };
 
+  # mDNS for local network service discovery (opencode.local)
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    publish = {
+      enable = true;
+      addresses = true;
+    };
+  };
+
   # Shell
   programs.zsh.enable = true;
 
@@ -216,8 +233,17 @@
     libnotify
     libreoffice-fresh
     neofetch
+    # Fans
+    liquidctl
+    openrgb
   ];
+  services.hardware.openrgb = {
+    enable = true;
+    # Optional: specify the package if you need a specific version
+    # package = pkgs.openrgb;
+  };
 
+  programs.coolercontrol.enable = true;
   # Thunderbolt controller rebind after wake - fixes USB4 DP tunnel
   systemd.services.thunderbolt-rebind = {
     description = "Rebind Thunderbolt controller after resume";
@@ -227,6 +253,21 @@
     serviceConfig = {
       Type = "oneshot";
       ExecStart = "${pkgs.bash}/bin/bash -c 'dev=$(lspci -D | grep \"ASM4242 PCIe Switch Upstream\" | cut -d\" \" -f1); echo 1 > /sys/bus/pci/devices/$dev/remove; sleep 2; echo 1 > /sys/bus/pci/rescan'";
+    };
+  };
+
+  # Opencode web interface - accessible from local network
+  systemd.services.opencode-web = {
+    description = "Opencode Web Interface";
+    after = [ "network.target" ];
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = "${pkgs.opencode}/bin/opencode web --hostname 0.0.0.0 --port 4096 --mdns --mdns-domain nix-pc.local";
+      Restart = "on-failure";
+      RestartSec = "5s";
+      User = "yiannis";
+      WorkingDirectory = "/home/yiannis";
     };
   };
 

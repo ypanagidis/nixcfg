@@ -42,6 +42,13 @@
         config = builtins.readFile ./nvim/lua/plugins/treesitter.lua;
       }
 
+      # Treesitter context (sticky function/class header)
+      {
+        plugin = nvim-treesitter-context;
+        type = "lua";
+        config = builtins.readFile ./nvim/lua/plugins/treesitter-context.lua;
+      }
+
       # Telescope (commented out - using Snacks picker instead)
       # plenary-nvim
       # {

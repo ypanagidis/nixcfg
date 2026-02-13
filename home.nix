@@ -34,6 +34,7 @@ in
     winapps-launcher
     bruno
     haruna
+    pscale
     # example: pull ONE package from unstable:
     # pkgsUnstable.<packageName>
   ];

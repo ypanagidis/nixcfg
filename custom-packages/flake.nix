@@ -95,7 +95,7 @@
           pname = "tsgo";
           version = "7.0.0-dev";
           src = inputs.typescript-go;
-          vendorHash = "sha256-1uZemqPsDxiYRVjLlC/UUP4ZXVCjocIBCj9uCzQHmog=";
+          vendorHash = "sha256-0IrEB52rj01HKreqbI/gMVeEHk5dxsNIrhm0Ze+aR44=";
           subPackages = [ "cmd/tsgo" ];
           doCheck = false;
         };

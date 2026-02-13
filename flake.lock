@@ -9,11 +9,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1769519544,
-        "narHash": "sha256-OADcfhtc1bNrR1idm0j8K4qSOXz6yid5zWh7p2HCO9I=",
+        "lastModified": 1770315205,
+        "narHash": "sha256-yOYprNUvMHRBC7EfmhNOYYLqNm43cLtydV39ITnCfZk=",
         "owner": "sadjow",
         "repo": "claude-code-nix",
-        "rev": "fdea255c6dac5c1414ceb2674de28edc4bd13ea5",
+        "rev": "b774ffcdcd9987f4a2e6e3809130d04438e29a13",
         "type": "github"
       },
       "original": {
@@ -101,11 +101,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1769580047,
-        "narHash": "sha256-tNqCP/+2+peAXXQ2V8RwsBkenlfWMERb+Uy6xmevyhM=",
+        "lastModified": 1770260404,
+        "narHash": "sha256-3iVX1+7YUIt23hBx1WZsUllhbmP2EnXrV8tCRbLxHc8=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "366d78c2856de6ab3411c15c1cb4fb4c2bf5c826",
+        "rev": "0d782ee42c86b196acff08acfbf41bb7d13eed5b",
         "type": "github"
       },
       "original": {
@@ -138,11 +138,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1769566661,
-        "narHash": "sha256-HSltp3PUxtBpcpzy4ANZlhq3CkDR47pmsM2dZ763ZWU=",
+        "lastModified": 1770259374,
+        "narHash": "sha256-UhT8zgyHS38eZdyoU6cju3bzlD5UNqEGlgFLMeL75uM=",
         "owner": "nix-community",
         "repo": "nix-vscode-extensions",
-        "rev": "7afc8df707497dbb304e680ba156b4bab98df496",
+        "rev": "b67ce43fc8c1836e95a9b56349e6bf04b017c61b",
         "type": "github"
       },
       "original": {
@@ -169,11 +169,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1769461804,
-        "narHash": "sha256-msG8SU5WsBUfVVa/9RPLaymvi5bI8edTavbIq3vRlhI=",
+        "lastModified": 1770197578,
+        "narHash": "sha256-AYqlWrX09+HvGs8zM6ebZ1pwUqjkfpnv8mewYwAo+iM=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "bfc1b8a4574108ceef22f02bafcf6611380c100d",
+        "rev": "00c21e4c93d963c50d4c0c89bfa84ed6e0694df2",
         "type": "github"
       },
       "original": {
@@ -185,11 +185,11 @@
     },
     "nixpkgs-unstable_2": {
       "locked": {
-        "lastModified": 1769461804,
-        "narHash": "sha256-msG8SU5WsBUfVVa/9RPLaymvi5bI8edTavbIq3vRlhI=",
+        "lastModified": 1770197578,
+        "narHash": "sha256-AYqlWrX09+HvGs8zM6ebZ1pwUqjkfpnv8mewYwAo+iM=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "bfc1b8a4574108ceef22f02bafcf6611380c100d",
+        "rev": "00c21e4c93d963c50d4c0c89bfa84ed6e0694df2",
         "type": "github"
       },
       "original": {
@@ -201,11 +201,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1769318308,
-        "narHash": "sha256-Mjx6p96Pkefks3+aA+72lu1xVehb6mv2yTUUqmSet6Q=",
+        "lastModified": 1770136044,
+        "narHash": "sha256-tlFqNG/uzz2++aAmn4v8J0vAkV3z7XngeIIB3rM3650=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "1cd347bf3355fce6c64ab37d3967b4a2cb4b878c",
+        "rev": "e576e3c9cf9bad747afcddd9e34f51d18c855b4e",
         "type": "github"
       },
       "original": {
@@ -220,11 +220,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1769601945,
-        "narHash": "sha256-9j3vW/R9zXnTPQ1NawBwQsYoMuFEJhHIRH/wUGucBl8=",
+        "lastModified": 1770318583,
+        "narHash": "sha256-uh/3m1m6eA85JTolCfpmTgG+fMjKr3naL04YoPy5esI=",
         "owner": "anomalyco",
         "repo": "opencode",
-        "rev": "6650aa6f35885ce564eb003da0f3420b49e81cb3",
+        "rev": "081f065942e6dc505443f323e0ce78a15838d997",
         "type": "github"
       },
       "original": {
@@ -274,11 +274,11 @@
     "typescript-go": {
       "flake": false,
       "locked": {
-        "lastModified": 1769583981,
-        "narHash": "sha256-ozCm3O8ObaecE7TN7vYyeyjA3gGD8FprB93aJcDwSw0=",
+        "lastModified": 1770318184,
+        "narHash": "sha256-3/crv0/YEa3DEXoe/yWMlMXK6iJcF3xe5Mr7KpMzW2M=",
         "owner": "microsoft",
         "repo": "typescript-go",
-        "rev": "463b6b461f23114073ccc0c4071a7f2a21477ac2",
+        "rev": "f801959d6a58f93a85f88a055a1d325e5e1ff3e9",
         "type": "github"
       },
       "original": {
