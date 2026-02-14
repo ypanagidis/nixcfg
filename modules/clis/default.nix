@@ -12,6 +12,22 @@
       enable = true;
       nix-direnv.enable = true;
     };
+    git = {
+      enable = true;
+      settings = {
+        user.name = "Yiannis Panagidis";
+        user.email = "ypanagidis@gmail.com";
+        init.defaultBranch = "main";
+        credential."https://github.com".helper = [
+          ""
+          "!${pkgs.gh}/bin/gh auth git-credential"
+        ];
+        credential."https://gist.github.com".helper = [
+          ""
+          "!${pkgs.gh}/bin/gh auth git-credential"
+        ];
+      };
+    };
     eza.enable = true;
     fzf.enable = true;
     lazygit.enable = true;

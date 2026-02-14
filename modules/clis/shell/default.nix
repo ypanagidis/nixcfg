@@ -1,4 +1,44 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
+
+let
+  linuxRebuild = "sudo nixos-rebuild switch --flake path:$HOME/nixcfg#nixos";
+  darwinRebuild = "darwin-rebuild switch --flake path:$HOME/nixcfg#yiannis-mbp";
+  rebuildCommand = if pkgs.stdenv.isDarwin then darwinRebuild else linuxRebuild;
+
+  linuxUpdateHelpers = lib.optionalString pkgs.stdenv.isLinux ''
+    uc() {
+        if [[ -z "$1" ]]; then
+          echo "Usage: uc <version>"
+          return 1
+        fi
+
+        local original_dir="$PWD"
+        cd ~/nixcfg/modules/ides/cursor || return 1
+
+        if ./update-cursor.sh "$1"; then
+          echo "Rebuilding..."
+          ${linuxRebuild}
+        else
+          echo "No update needed or version invalid"
+        fi
+
+        cd "$original_dir"
+    }
+    uh() {
+      local original_dir="$PWD"
+      cd ~/nixcfg/modules/browsers/helium || return 1
+
+      if ./update-helium.sh; then
+        echo "Rebuilding..."
+        ${linuxRebuild}
+      else
+        echo "No update needed or fetch failed"
+      fi
+
+      cd "$original_dir"
+    }
+  '';
+in
 
 {
   programs.zsh = {
@@ -22,7 +62,7 @@
       ];
       extraConfig = ''
         export ZSH_CUSTOM="$HOME/.config/oh-my-zsh/custom"
-        export LIBVIRT_DEFAULT_URI="qemu:///system"
+        ${lib.optionalString pkgs.stdenv.isLinux ''export LIBVIRT_DEFAULT_URI="qemu:///system"''}
         VI_MODE_SET_CURSOR=true
       '';
     };
@@ -89,39 +129,10 @@
       # 5. ALIASES (RESTORED)
       # ---------------------------------------------------------
       function re() {
-        pushd ~/nixcfg > /dev/null && sudo nixos-rebuild switch --flake .#nixos && popd > /dev/null
+        pushd ~/nixcfg > /dev/null && ${rebuildCommand} && popd > /dev/null
       }
-      uc() {
-          if [[ -z "$1" ]]; then
-            echo "Usage: uc <version>"
-            return 1
-          fi
-          
-          local original_dir="$PWD"
-          cd ~/nixcfg/modules/ides/cursor || return 1
-          
-          if ./update-cursor.sh "$1"; then
-            echo "Rebuilding..."
-            sudo nixos-rebuild switch --flake ~/nixcfg
-          else
-            echo "No update needed or version invalid"
-          fi
-          
-          cd "$original_dir"
-      }
-      uh() {
-        local original_dir="$PWD"
-        cd ~/nixcfg/modules/browsers/helium || return 1
-        
-        if ./update-helium.sh; then
-          echo "Rebuilding..."
-          sudo nixos-rebuild switch --flake ~/nixcfg
-        else
-          echo "No update needed or fetch failed"
-        fi
-        
-        cd "$original_dir"
-      }
+
+      ${linuxUpdateHelpers}
 
       alias lgit="lazygit"
       alias p="pnpm"
