@@ -21,14 +21,29 @@ in
     (with pkgs; [
       pnpm
       nodejs
-      high-tide
       python3
       bun
-      bruno
+      httpie
       pscale
     ])
     ++ lib.optionals (pkgs ? opencode) [ pkgs.opencode ]
     ++ lib.optionals (pkgs ? claude) [ pkgs.claude ];
+
+  programs.ssh = {
+    enable = true;
+    enableDefaultConfig = false;
+    matchBlocks = {
+      "*" = {
+        addKeysToAgent = "yes";
+        hashKnownHosts = true;
+      };
+      github = {
+        hostname = "github.com";
+        user = "git";
+        identitiesOnly = true;
+      };
+    };
+  };
 
   imports = [
     ../modules/ides

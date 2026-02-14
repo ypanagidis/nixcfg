@@ -2,7 +2,7 @@
 
 let
   linuxRebuild = "sudo nixos-rebuild switch --flake path:$HOME/nixcfg#nixos";
-  darwinRebuild = "darwin-rebuild switch --flake path:$HOME/nixcfg#mbp";
+  darwinRebuild = "darwin-rebuild switch --flake path:$HOME/nixcfg#yiannis-mbp";
   rebuildCommand = if pkgs.stdenv.isDarwin then darwinRebuild else linuxRebuild;
 
   linuxUpdateHelpers = lib.optionalString pkgs.stdenv.isLinux ''

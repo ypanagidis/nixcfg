@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   services.xserver.enable = true;
@@ -42,23 +42,6 @@
     };
   };
 
-  services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
-  };
-
-  hardware.nvidia = {
-    modesetting.enable = true;
-    nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.production;
-    open = true;
-    powerManagement = {
-      enable = true;
-      finegrained = false;
-    };
-  };
-
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
 
@@ -73,12 +56,4 @@
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
   ];
-
-  hardware.apple-studio-display.enable = true;
-
-  services.hardware.openrgb = {
-    enable = true;
-  };
-
-  programs.coolercontrol.enable = true;
 }

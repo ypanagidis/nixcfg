@@ -1,24 +1,39 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
-  services.printing.enable = true;
-  services.hardware.bolt.enable = true;
+  networking.hostName = "nix-pc";
 
-  services.syncthing = {
+  boot.kernelModules = [
+    "k10temp"
+    "asus_ec_sensors"
+  ];
+
+  services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.graphics = {
     enable = true;
-    user = "yiannis";
-    dataDir = "/home/yiannis";
-    configDir = "/home/yiannis/.config/syncthing";
+    enable32Bit = true;
   };
 
-  services.avahi = {
-    enable = true;
-    nssmdns4 = true;
-    publish = {
+  hardware.nvidia = {
+    modesetting.enable = true;
+    nvidiaSettings = true;
+    package = config.boot.kernelPackages.nvidiaPackages.production;
+    open = true;
+    powerManagement = {
       enable = true;
-      addresses = true;
+      finegrained = false;
     };
   };
+
+  hardware.apple-studio-display.enable = true;
+
+  services.hardware.openrgb = {
+    enable = true;
+  };
+
+  programs.coolercontrol.enable = true;
+
+  services.hardware.bolt.enable = true;
 
   systemd.services.thunderbolt-rebind = {
     description = "Rebind Thunderbolt controller after resume";
@@ -44,4 +59,15 @@
       WorkingDirectory = "/home/yiannis";
     };
   };
+
+  environment.systemPackages = with pkgs; [
+    liquidctl
+    openrgb
+  ];
+
+  boot.kernelParams = [
+    "mem_sleep_default=s2idle"
+    "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
+    "pci=realloc=on,pcie_bus_perf,hpbussize=32"
+  ];
 }

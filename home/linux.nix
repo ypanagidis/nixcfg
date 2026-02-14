@@ -9,6 +9,7 @@
 
   home.packages =
     (with pkgs; [
+      high-tide
       protonup-qt
       protontricks
       mangohud
@@ -22,9 +23,11 @@
 
   xdg.configFile."winapps/winapps.conf".text = ''
     RDP_USER="yiannis"
-    RDP_PASS="(move this to a secret file)"
+    RDP_PASS="fuckwindows"
     RDP_DOMAIN=""
     RDP_IP="192.168.122.85"
     WAFLAVOR="libvirt"
   '';
+
+  programs.ssh.matchBlocks.github.identityFile = "~/.ssh/id_ed25519";
 }

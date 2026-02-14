@@ -55,7 +55,7 @@
           {
             nixpkgs.overlays = [ custom-packages.overlays.default ];
           }
-          ./hosts/darwin/mbp/default.nix
+          ./hosts/darwin/yiannis-mbp/default.nix
           home-manager.darwinModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
@@ -72,7 +72,7 @@
         "nix-pc" = nixosConfig;
       };
       darwinConfigurations = {
-        mbp = darwinConfig;
+        "yiannis-mbp" = darwinConfig;
       };
     };
 }

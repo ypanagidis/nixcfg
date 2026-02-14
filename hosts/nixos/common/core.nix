@@ -5,7 +5,6 @@
   boot.loader.systemd-boot.configurationLimit = 20;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nix-pc";
   networking.networkmanager.enable = true;
   networking.firewall.trustedInterfaces = [ "virbr0" ];
   networking.firewall.allowedTCPPorts = [
@@ -26,11 +25,6 @@
       runAsRoot = true;
     };
   };
-
-  boot.kernelModules = [
-    "k10temp"
-    "asus_ec_sensors"
-  ];
 
   users.users.yiannis = {
     isNormalUser = true;
@@ -96,19 +90,11 @@
     libnotify
     libreoffice-fresh
     neofetch
-    liquidctl
-    openrgb
   ];
 
   environment.sessionVariables = {
     _JAVA_AWT_WM_NONREPARENTING = "1";
   };
-
-  boot.kernelParams = [
-    "mem_sleep_default=s2idle"
-    "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
-    "pci=realloc=on,pcie_bus_perf,hpbussize=32"
-  ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 

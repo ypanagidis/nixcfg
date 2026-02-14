@@ -1,7 +1,0 @@
-{ ... }:
-
-{
-  imports = [
-    ./home/linux.nix
-  ];
-}
