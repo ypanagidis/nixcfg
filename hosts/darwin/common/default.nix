@@ -1,8 +1,6 @@
 { pkgs, ... }:
 
 {
-  services.karabiner-elements.enable = true;
-
   users.users.yiannis.home = "/Users/yiannis";
   system.primaryUser = "yiannis";
 
@@ -37,6 +35,7 @@
       "google-chrome"
       "helium-browser"
       "httpie"
+      "karabiner-elements"
       "obsidian"
       "raycast"
       "tableplus"
