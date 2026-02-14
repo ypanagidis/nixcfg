@@ -31,6 +31,7 @@
       "datagrip"
       "discord"
       "claude-code"
+      "font-jetbrains-mono-nerd-font"
       "ghostty"
       "google-chrome"
       "helium-browser"
@@ -90,6 +91,14 @@
       /usr/bin/sudo -u yiannis /run/current-system/sw/bin/duti -s net.imput.helium https all || true
       /usr/bin/sudo -u yiannis /run/current-system/sw/bin/duti -s net.imput.helium public.html all || true
       /usr/bin/sudo -u yiannis /run/current-system/sw/bin/duti -s net.imput.helium public.url all || true
+    fi
+  '';
+
+  system.activationScripts.disableSpotlightHotkeys.text = ''
+    if [ -x /usr/bin/defaults ]; then
+      /usr/bin/sudo -u yiannis /usr/bin/defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 64 "{ enabled = 0; }" || true
+      /usr/bin/sudo -u yiannis /usr/bin/defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 65 "{ enabled = 0; }" || true
+      /usr/bin/sudo -u yiannis /usr/bin/killall cfprefsd SystemUIServer 2>/dev/null || true
     fi
   '';
 }

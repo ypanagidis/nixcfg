@@ -2,7 +2,7 @@
 
 let
   linuxRebuild = "sudo nixos-rebuild switch --flake path:$HOME/nixcfg#nixos";
-  darwinRebuild = "darwin-rebuild switch --flake path:$HOME/nixcfg#yiannis-mbp";
+  darwinRebuild = "sudo -H darwin-rebuild switch --flake path:$HOME/nixcfg#yiannis-mbp";
   rebuildCommand = if pkgs.stdenv.isDarwin then darwinRebuild else linuxRebuild;
 
   linuxUpdateHelpers = lib.optionalString pkgs.stdenv.isLinux ''
@@ -164,6 +164,8 @@ in
 
   home.file.".config/oh-my-zsh/custom/themes/powerlevel10k".source =
     "${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k";
+
+  home.file.".p10k.zsh".source = ./p10k/.p10k.zsh;
 
   home.packages = with pkgs; [
     zsh-powerlevel10k
