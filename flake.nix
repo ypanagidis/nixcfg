@@ -15,6 +15,18 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-homebrew.url = "github:zhaofengli/nix-homebrew";
+
+    homebrew-core = {
+      url = "github:homebrew/homebrew-core";
+      flake = false;
+    };
+
+    homebrew-cask = {
+      url = "github:homebrew/homebrew-cask";
+      flake = false;
+    };
+
     custom-packages = {
       url = "path:./custom-packages";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -25,8 +37,11 @@
     {
       nixpkgs,
       darwin,
+      nix-homebrew,
       home-manager,
       custom-packages,
+      homebrew-core,
+      homebrew-cask,
       ...
     }@inputs:
     let
@@ -55,6 +70,26 @@
           {
             nixpkgs.overlays = [ custom-packages.overlays.default ];
           }
+          nix-homebrew.darwinModules.nix-homebrew
+          {
+            nix-homebrew = {
+              enable = true;
+              enableRosetta = true;
+              user = "yiannis";
+              autoMigrate = true;
+              taps = {
+                "homebrew/homebrew-core" = homebrew-core;
+                "homebrew/homebrew-cask" = homebrew-cask;
+              };
+              mutableTaps = false;
+            };
+          }
+          (
+            { config, ... }:
+            {
+              homebrew.taps = builtins.attrNames config.nix-homebrew.taps;
+            }
+          )
           ./hosts/darwin/yiannis-mbp/default.nix
           home-manager.darwinModules.home-manager
           {

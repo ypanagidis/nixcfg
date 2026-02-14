@@ -22,22 +22,20 @@
       cleanup = "zap";
     };
 
-    taps = [
-      "homebrew/core"
-      "homebrew/cask"
-    ];
-
     brews = [
       "mas"
+      "opencode"
+      "duti"
     ];
 
     casks = [
       "cursor"
       "datagrip"
       "discord"
+      "claude-code"
       "ghostty"
       "google-chrome"
-      "helium"
+      "helium-browser"
       "httpie"
       "obsidian"
       "raycast"
@@ -49,6 +47,19 @@
   };
 
   system.defaults = {
+    CustomUserPreferences = {
+      "com.apple.symbolichotkeys" = {
+        AppleSymbolicHotKeys = {
+          "64" = {
+            enabled = false;
+          };
+          "65" = {
+            enabled = false;
+          };
+        };
+      };
+    };
+
     NSGlobalDomain = {
       KeyRepeat = 1;
       InitialKeyRepeat = 10;
@@ -73,4 +84,13 @@
     };
     finder.AppleShowAllExtensions = true;
   };
+
+  system.activationScripts.setDefaultBrowser.text = ''
+    if [ -x /run/current-system/sw/bin/duti ] && [ -d /Applications/Helium.app ]; then
+      /usr/bin/sudo -u yiannis /run/current-system/sw/bin/duti -s net.imput.helium http all || true
+      /usr/bin/sudo -u yiannis /run/current-system/sw/bin/duti -s net.imput.helium https all || true
+      /usr/bin/sudo -u yiannis /run/current-system/sw/bin/duti -s net.imput.helium public.html all || true
+      /usr/bin/sudo -u yiannis /run/current-system/sw/bin/duti -s net.imput.helium public.url all || true
+    fi
+  '';
 }
