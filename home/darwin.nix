@@ -2,6 +2,6 @@
 
 {
   imports = [
-    ./home/linux.nix
+    ./common.nix
   ];
 }

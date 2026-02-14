@@ -1,5 +1,5 @@
 {
-  description = "Yiannis' NixOS system";
+  description = "Yiannis' multi-host Nix config";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
@@ -7,6 +7,11 @@
 
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    darwin = {
+      url = "github:LnL7/nix-darwin/nix-darwin-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -19,27 +24,55 @@
   outputs =
     {
       nixpkgs,
+      darwin,
       home-manager,
       custom-packages,
       ...
     }@inputs:
-    {
-      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+    let
+      nixosConfig = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
           {
-            nixpkgs.hostPlatform = "x86_64-linux";
             nixpkgs.overlays = [ custom-packages.overlays.default ];
           }
-          ./configuration.nix
+          ./hosts/nixos/nix-pc/default.nix
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.extraSpecialArgs = { inherit inputs; };
-            home-manager.users.yiannis = import ./home.nix;
+            home-manager.users.yiannis = import ./home/linux.nix;
           }
         ];
+      };
+
+      darwinConfig = darwin.lib.darwinSystem {
+        system = "aarch64-darwin";
+        specialArgs = { inherit inputs; };
+        modules = [
+          {
+            nixpkgs.overlays = [ custom-packages.overlays.default ];
+          }
+          ./hosts/darwin/mbp/default.nix
+          home-manager.darwinModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = { inherit inputs; };
+            home-manager.users.yiannis = import ./home/darwin.nix;
+          }
+        ];
+      };
+    in
+    {
+      nixosConfigurations = {
+        nixos = nixosConfig;
+        "nix-pc" = nixosConfig;
+      };
+      darwinConfigurations = {
+        mbp = darwinConfig;
       };
     };
 }

@@ -7,7 +7,13 @@ let
   settingsRaw = builtins.readFile ./settings.json;
   keybindingsRaw = builtins.readFile ./keybindings.json;
 
-  # Patch macOS-only bits + the hardcoded node path.
+  terminalExecSetting =
+    if pkgs.stdenv.isDarwin then
+      "\"terminal.external.osxExec\": \"Ghostty.app\","
+    else
+      "\"terminal.external.linuxExec\": \"konsole\",";
+
+  # Patch terminal key + hardcoded node path.
   settingsPatched =
     builtins.replaceStrings
       [
@@ -15,13 +21,17 @@ let
         "/Users/yiannis/.nvm/versions/node/v24.10.0/bin/node"
       ]
       [
-        "\"terminal.external.linuxExec\": \"konsole\","
+        terminalExecSetting
         "${config.home.profileDirectory}/bin/node"
       ]
       settingsRaw;
 
   # You only had cmd+i in your keybindings; patch to something usable on Linux.
-  keybindingsPatched = builtins.replaceStrings [ "\"cmd+i\"" ] [ "\"ctrl+alt+i\"" ] keybindingsRaw;
+  keybindingsPatched =
+    if pkgs.stdenv.isDarwin then
+      keybindingsRaw
+    else
+      builtins.replaceStrings [ "\"cmd+i\"" ] [ "\"ctrl+alt+i\"" ] keybindingsRaw;
 in
 {
   home.packages = [

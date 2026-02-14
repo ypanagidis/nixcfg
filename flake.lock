@@ -44,6 +44,27 @@
       },
       "parent": []
     },
+    "darwin": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1767634391,
+        "narHash": "sha256-owcSz2ICqTSvhBbhPP+1eWzi88e54rRZtfCNE5E/wwg=",
+        "owner": "LnL7",
+        "repo": "nix-darwin",
+        "rev": "08585aacc3d6d6c280a02da195fdbd4b9cf083c2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "LnL7",
+        "ref": "nix-darwin-25.11",
+        "repo": "nix-darwin",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "locked": {
         "lastModified": 1696426674,
@@ -236,6 +257,7 @@
     "root": {
       "inputs": {
         "custom-packages": "custom-packages",
+        "darwin": "darwin",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-unstable": "nixpkgs-unstable_2"
