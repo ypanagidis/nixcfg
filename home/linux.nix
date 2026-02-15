@@ -3,6 +3,7 @@
 {
   imports = [
     ./common.nix
+    ./plasma.nix
     ../modules/browsers
     ../modules/obsedian.nix
   ];
@@ -15,6 +16,7 @@
       mangohud
       google-chrome
       haruna
+      bruno
     ])
     ++ lib.optionals (pkgs ? opencode) [ pkgs.opencode ]
     ++ lib.optionals (pkgs ? claude) [ pkgs.claude ]
