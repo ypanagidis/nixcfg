@@ -8,13 +8,8 @@
       theme = "breeze-dark";
     };
     shortcuts = {
-      ActivityManager.switch-to-activity-88c96075-3fd2-47a6-90e6-70f9b4556a51 = [ ];
       "KDE Keyboard Layout Switcher"."Switch to Last-Used Keyboard Layout" = "Meta+Alt+L";
       "KDE Keyboard Layout Switcher"."Switch to Next Keyboard Layout" = "Meta+Alt+K";
-      "com.google.Chrome"."3249A6A931152FB52F40EE3F7CBD3FAE-lock" = [ ];
-      "com.google.Chrome".A155FAFDF9BE7089779B99C25ADDA1DC-lock = [ ];
-      "com.google.Chrome".D8251F67F18459A13F9967E5ACF2A9DA-enter-picker-mode = [ ];
-      "com.google.Chrome".D8251F67F18459A13F9967E5ACF2A9DA-enter-zapper-mode = [ ];
       kaccess."Toggle Screen Reader On and Off" = "Meta+Alt+S";
       kmix.decrease_microphone_volume = "Microphone Volume Down";
       kmix.decrease_volume = "Volume Down";
@@ -27,21 +22,12 @@
         "Meta+Volume Mute"
       ];
       kmix.mute = "Volume Mute";
-      ksmserver."Halt Without Confirmation" = [ ];
       ksmserver."Lock Session" = [
         "Meta+L"
         "Screensaver"
       ];
       ksmserver."Log Out" = "Ctrl+Alt+Del";
-      ksmserver."Log Out Without Confirmation" = [ ];
-      ksmserver.LogOut = [ ];
-      ksmserver.Reboot = [ ];
-      ksmserver."Reboot Without Confirmation" = [ ];
-      ksmserver."Shut Down" = [ ];
       kwin."Activate Window Demanding Attention" = "Meta+Ctrl+A";
-      kwin."Cycle Overview" = [ ];
-      kwin."Cycle Overview Opposite" = [ ];
-      kwin."Decrease Opacity" = [ ];
       kwin."Edit Tiles" = "Meta+T";
       kwin.Expose = "Ctrl+F9";
       kwin.ExposeAll = [
@@ -49,19 +35,11 @@
         "Launch (C)"
       ];
       kwin.ExposeClass = "Ctrl+F7";
-      kwin.ExposeClassCurrentDesktop = [ ];
       kwin."Grid View" = "Meta+G";
-      kwin."Increase Opacity" = [ ];
       kwin."Kill Window" = "Meta+Ctrl+Esc";
-      kwin."Move Tablet to Next Output" = [ ];
       kwin.MoveMouseToCenter = "Meta+F6";
       kwin.MoveMouseToFocus = "Meta+F5";
-      kwin.MoveZoomDown = [ ];
-      kwin.MoveZoomLeft = [ ];
-      kwin.MoveZoomRight = [ ];
-      kwin.MoveZoomUp = [ ];
       kwin.Overview = "Meta+W";
-      kwin."Setup Window Shortcut" = [ ];
       kwin."Show Desktop" = "Meta+D";
       kwin."Switch One Desktop Down" = "Meta+Ctrl+Down";
       kwin."Switch One Desktop Up" = "Meta+Ctrl+Up";
@@ -72,43 +50,9 @@
       kwin."Switch Window Right" = "Meta+Alt+Right";
       kwin."Switch Window Up" = "Meta+Alt+Up";
       kwin."Switch to Desktop 1" = "Ctrl+F1";
-      kwin."Switch to Desktop 10" = [ ];
-      kwin."Switch to Desktop 11" = [ ];
-      kwin."Switch to Desktop 12" = [ ];
-      kwin."Switch to Desktop 13" = [ ];
-      kwin."Switch to Desktop 14" = [ ];
-      kwin."Switch to Desktop 15" = [ ];
-      kwin."Switch to Desktop 16" = [ ];
-      kwin."Switch to Desktop 17" = [ ];
-      kwin."Switch to Desktop 18" = [ ];
-      kwin."Switch to Desktop 19" = [ ];
       kwin."Switch to Desktop 2" = "Ctrl+F2";
-      kwin."Switch to Desktop 20" = [ ];
       kwin."Switch to Desktop 3" = "Ctrl+F3";
       kwin."Switch to Desktop 4" = "Ctrl+F4";
-      kwin."Switch to Desktop 5" = [ ];
-      kwin."Switch to Desktop 6" = [ ];
-      kwin."Switch to Desktop 7" = [ ];
-      kwin."Switch to Desktop 8" = [ ];
-      kwin."Switch to Desktop 9" = [ ];
-      kwin."Switch to Next Desktop" = [ ];
-      kwin."Switch to Next Screen" = [ ];
-      kwin."Switch to Previous Desktop" = [ ];
-      kwin."Switch to Previous Screen" = [ ];
-      kwin."Switch to Screen 0" = [ ];
-      kwin."Switch to Screen 1" = [ ];
-      kwin."Switch to Screen 2" = [ ];
-      kwin."Switch to Screen 3" = [ ];
-      kwin."Switch to Screen 4" = [ ];
-      kwin."Switch to Screen 5" = [ ];
-      kwin."Switch to Screen 6" = [ ];
-      kwin."Switch to Screen 7" = [ ];
-      kwin."Switch to Screen Above" = [ ];
-      kwin."Switch to Screen Below" = [ ];
-      kwin."Switch to Screen to the Left" = [ ];
-      kwin."Switch to Screen to the Right" = [ ];
-      kwin."Toggle Night Color" = [ ];
-      kwin."Toggle Window Raise/Lower" = [ ];
       kwin."Walk Through Windows" = [
         "Meta+Tab"
         "Alt+Tab"
@@ -117,8 +61,6 @@
         "Meta+Shift+Tab"
         "Alt+Shift+Tab"
       ];
-      kwin."Walk Through Windows Alternative" = [ ];
-      kwin."Walk Through Windows Alternative (Reverse)" = [ ];
       kwin."Walk Through Windows of Current Application" = [
         "Meta+`"
         "Alt+`"
@@ -127,30 +69,12 @@
         "Meta+~"
         "Alt+~"
       ];
-      kwin."Walk Through Windows of Current Application Alternative" = [ ];
-      kwin."Walk Through Windows of Current Application Alternative (Reverse)" = [ ];
-      kwin."Window Above Other Windows" = [ ];
-      kwin."Window Below Other Windows" = [ ];
       kwin."Window Close" = "Alt+F4";
-      kwin."Window Custom Quick Tile Bottom" = [ ];
-      kwin."Window Custom Quick Tile Left" = [ ];
-      kwin."Window Custom Quick Tile Right" = [ ];
-      kwin."Window Custom Quick Tile Top" = [ ];
-      kwin."Window Fullscreen" = [ ];
-      kwin."Window Grow Horizontal" = [ ];
-      kwin."Window Grow Vertical" = [ ];
-      kwin."Window Lower" = [ ];
       kwin."Window Maximize" = [
         "Meta+PgUp"
         "Ctrl+Shift+M"
       ];
-      kwin."Window Maximize Horizontal" = [ ];
-      kwin."Window Maximize Vertical" = [ ];
       kwin."Window Minimize" = "Meta+PgDown";
-      kwin."Window Move" = [ ];
-      kwin."Window Move Center" = [ ];
-      kwin."Window No Border" = [ ];
-      kwin."Window On All Desktops" = [ ];
       kwin."Window One Desktop Down" = "Meta+Ctrl+Shift+Down";
       kwin."Window One Desktop Up" = "Meta+Ctrl+Shift+Up";
       kwin."Window One Desktop to the Left" = "Meta+Ctrl+Shift+Left";
@@ -160,16 +84,10 @@
       kwin."Window One Screen to the Left" = "Meta+Shift+H";
       kwin."Window One Screen to the Right" = "Meta+Shift+L";
       kwin."Window Operations Menu" = "Alt+F3";
-      kwin."Window Pack Down" = [ ];
-      kwin."Window Pack Left" = [ ];
-      kwin."Window Pack Right" = [ ];
-      kwin."Window Pack Up" = [ ];
       kwin."Window Quick Tile Bottom" = [
         "Meta+Down"
         "Ctrl+Shift+J"
       ];
-      kwin."Window Quick Tile Bottom Left" = [ ];
-      kwin."Window Quick Tile Bottom Right" = [ ];
       kwin."Window Quick Tile Left" = [
         "Meta+Left"
         "Ctrl+Shift+H"
@@ -182,44 +100,8 @@
         "Ctrl+Shift+K"
         "Meta+Up"
       ];
-      kwin."Window Quick Tile Top Left" = [ ];
-      kwin."Window Quick Tile Top Right" = [ ];
-      kwin."Window Raise" = [ ];
-      kwin."Window Resize" = [ ];
-      kwin."Window Shrink Horizontal" = [ ];
-      kwin."Window Shrink Vertical" = [ ];
-      kwin."Window to Desktop 1" = [ ];
-      kwin."Window to Desktop 10" = [ ];
-      kwin."Window to Desktop 11" = [ ];
-      kwin."Window to Desktop 12" = [ ];
-      kwin."Window to Desktop 13" = [ ];
-      kwin."Window to Desktop 14" = [ ];
-      kwin."Window to Desktop 15" = [ ];
-      kwin."Window to Desktop 16" = [ ];
-      kwin."Window to Desktop 17" = [ ];
-      kwin."Window to Desktop 18" = [ ];
-      kwin."Window to Desktop 19" = [ ];
-      kwin."Window to Desktop 2" = [ ];
-      kwin."Window to Desktop 20" = [ ];
-      kwin."Window to Desktop 3" = [ ];
-      kwin."Window to Desktop 4" = [ ];
-      kwin."Window to Desktop 5" = [ ];
-      kwin."Window to Desktop 6" = [ ];
-      kwin."Window to Desktop 7" = [ ];
-      kwin."Window to Desktop 8" = [ ];
-      kwin."Window to Desktop 9" = [ ];
-      kwin."Window to Next Desktop" = [ ];
       kwin."Window to Next Screen" = "Meta+Shift+Right";
-      kwin."Window to Previous Desktop" = [ ];
       kwin."Window to Previous Screen" = "Meta+Shift+Left";
-      kwin."Window to Screen 0" = [ ];
-      kwin."Window to Screen 1" = [ ];
-      kwin."Window to Screen 2" = [ ];
-      kwin."Window to Screen 3" = [ ];
-      kwin."Window to Screen 4" = [ ];
-      kwin."Window to Screen 5" = [ ];
-      kwin."Window to Screen 6" = [ ];
-      kwin."Window to Screen 7" = [ ];
       kwin.disableInputCapture = "Meta+Shift+Esc";
       kwin.view_actual_size = "Meta+0";
       kwin.view_zoom_in = [
@@ -227,24 +109,11 @@
         "Meta+="
       ];
       kwin.view_zoom_out = "Meta+-";
-      mediacontrol.mediavolumedown = [ ];
-      mediacontrol.mediavolumeup = [ ];
       mediacontrol.nextmedia = "Media Next";
       mediacontrol.pausemedia = "Media Pause";
-      mediacontrol.playmedia = [ ];
       mediacontrol.playpausemedia = "Media Play";
       mediacontrol.previousmedia = "Media Previous";
       mediacontrol.stopmedia = "Media Stop";
-      "org.chromium.Chromium"."1B5141D842848DCEC77B03E16AAC4528-" = [ ];
-      "org.chromium.Chromium"."5EDC5185BB9E9EABD300D4CFC1863DF5-lock" = [ ];
-      "org.chromium.Chromium"."64B60C02F4589D5C7DA810493291B945-lock" = [ ];
-      "org.chromium.Chromium".BF23988F31319C7AE40A186133B21F79-launch-element-picker = [ ];
-      "org.chromium.Chromium".BF23988F31319C7AE40A186133B21F79-launch-element-zapper = [ ];
-      "org.chromium.Chromium".BF23988F31319C7AE40A186133B21F79-launch-logger = [ ];
-      "org.chromium.Chromium".BF23988F31319C7AE40A186133B21F79-open-dashboard = [ ];
-      "org.chromium.Chromium".BF23988F31319C7AE40A186133B21F79-relax-blocking-mode = [ ];
-      "org.chromium.Chromium".BF23988F31319C7AE40A186133B21F79-toggle-cosmetic-filtering = [ ];
-      "org.chromium.Chromium".BF23988F31319C7AE40A186133B21F79-toggle-javascript = [ ];
       org_kde_powerdevil."Decrease Keyboard Brightness" = "Keyboard Brightness Down";
       org_kde_powerdevil."Decrease Screen Brightness" = "Monitor Brightness Down";
       org_kde_powerdevil."Decrease Screen Brightness Small" = "Shift+Monitor Brightness Down";
@@ -256,12 +125,10 @@
       org_kde_powerdevil.PowerOff = "Power Off";
       org_kde_powerdevil.Sleep = "Sleep";
       org_kde_powerdevil."Toggle Keyboard Backlight" = "Keyboard Light On/Off";
-      org_kde_powerdevil."Turn Off Screen" = [ ];
       org_kde_powerdevil.powerProfile = [
         "Battery"
         "Meta+B"
       ];
-      plasmashell."Slideshow Wallpaper Next Image" = [ ];
       plasmashell."activate application launcher" = [
         "Meta"
         "Alt+F1"
@@ -270,12 +137,11 @@
         "Meta+1"
         "Meta+Ctrl+Alt+Shift+A"
       ];
-      plasmashell."activate task manager entry 10" = [ ];
       plasmashell."activate task manager entry 2" = [
         "Meta+2"
         "Meta+Ctrl+Alt+Shift+C"
+        "Meta+Ctrl+Alt+Shift+G"
       ];
-      plasmashell."activate task manager entry 3" = [ ];
       plasmashell."activate task manager entry 4" = [
         "Meta+Ctrl+Alt+Shift+D"
         "Meta+4"
@@ -297,26 +163,13 @@
         "Meta+8"
       ];
       plasmashell."activate task manager entry 9" = "Meta+9";
-      plasmashell.clear-history = [ ];
       plasmashell.clipboard_action = "Meta+Ctrl+X";
       plasmashell.cycle-panels = "Meta+Alt+P";
-      plasmashell.cycleNextAction = [ ];
-      plasmashell.cyclePrevAction = [ ];
-      plasmashell.edit_clipboard = [ ];
       plasmashell."manage activities" = "Meta+Q";
       plasmashell."next activity" = "Meta+A";
       plasmashell."previous activity" = "Meta+Shift+A";
-      plasmashell.repeat_action = [ ];
       plasmashell."show dashboard" = "Ctrl+F12";
-      plasmashell.show-barcode = [ ];
       plasmashell.show-on-mouse-pos = "Meta+V";
-      plasmashell."switch to next activity" = [ ];
-      plasmashell."switch to previous activity" = [ ];
-      plasmashell."toggle do not disturb" = [ ];
-      "services/com.mitchellh.ghostty.desktop"._launch = [
-        "Meta+Ctrl+Alt+Shift+G"
-        "Meta+3"
-      ];
       "services/org.kde.spectacle.desktop"._launch = [
         "Print"
         "Meta+Shift+S"
@@ -439,7 +292,7 @@
       plasmarc.Wallpapers.usersWallpapers = "";
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments/3/Applets/30/Configuration/General".launchers =
         {
-          value = "file:///nix/store/49r32i0z9i0hya0v6mp81wbdvjk1pn32-user-environment/share/applications/helium.desktop,applications:com.mitchellh.ghostty.desktop,applications:discord.desktop,applications:io.github.nokse22.high-tide.desktop,applications:obsidian.desktop,applications:datagrip.desktop,applications:bruno.desktop,applications:systemsettings.desktop,preferred://filemanager";
+          value = "applications:helium.desktop,applications:com.mitchellh.ghostty.desktop,applications:discord.desktop,applications:io.github.nokse22.high-tide.desktop,applications:obsidian.desktop,applications:datagrip.desktop,applications:bruno.desktop,applications:systemsettings.desktop,preferred://filemanager";
           escapeValue = false;
         };
       spectaclerc.Annotations.annotationToolType = 9;
