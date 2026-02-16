@@ -72,6 +72,7 @@
     lm_sensors
     smartmontools
     nvme-cli
+    sysstat # iostat/sar for tmux cpu plugin
 
     stdenv.cc.cc.lib
     fuse3

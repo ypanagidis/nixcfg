@@ -1,20 +1,33 @@
--- Ayu theme
-require("ayu").setup({
-  mirage = true,
-  terminal = true,
-  overrides = {
-    -- Add any overrides here
+-- Cyberdream theme
+require("cyberdream").setup({
+  -- Enable transparent background
+  transparent = false,
+  
+  -- Enable italics comments
+  italic_comments = false,
+  
+  -- Replace all fillchars with ' ' for the ultimate clean look
+  hide_fillchars = false,
+  
+  -- Modern borderless telescope theme
+  borderless_telescope = true,
+  
+  -- Set terminal colors used in `:terminal`
+  terminal_colors = true,
+  
+  theme = {
+    variant = "default", -- use "light" for light mode
+    highlights = {
+      -- You can add custom overrides here
+    },
   },
 })
-vim.cmd("colorscheme ayu-mirage")
-
--- Fix Snacks picker directory path visibility (NonText is too dim in Ayu Mirage)
-vim.api.nvim_set_hl(0, "SnacksPickerDir", { link = "Comment" })
+vim.cmd("colorscheme cyberdream")
 
 -- Lualine
 require("lualine").setup({
   options = {
-    theme = "ayu_mirage",
+    theme = "auto", -- Cyberdream provides its own lualine theme automatically
     component_separators = { left = "", right = "" },
     section_separators = { left = "", right = "" },
     globalstatus = true,

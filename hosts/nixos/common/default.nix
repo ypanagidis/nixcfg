@@ -3,7 +3,7 @@
 {
   imports = [
     ./core.nix
-    ./desktop-kde.nix
+    ./des
     ./services.nix
   ];
 }

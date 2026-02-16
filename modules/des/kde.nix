@@ -7,6 +7,17 @@
       colorScheme = "BreezeDark";
       theme = "breeze-dark";
     };
+    startup.desktopScript.bottom-panel-autohide = {
+      runAlways = true;
+      priority = 4;
+      text = ''
+        for (const panel of panels()) {
+          if (panel.location === "bottom" || panel.location === 4) {
+            panel.hiding = "autohide";
+          }
+        }
+      '';
+    };
     shortcuts = {
       "KDE Keyboard Layout Switcher"."Switch to Last-Used Keyboard Layout" = "Meta+Alt+L";
       "KDE Keyboard Layout Switcher"."Switch to Next Keyboard Layout" = "Meta+Alt+K";
@@ -130,8 +141,8 @@
         "Meta+B"
       ];
       plasmashell."activate application launcher" = [
-        "Meta"
         "Alt+F1"
+        "Alt+Space"
       ];
       plasmashell."activate task manager entry 1" = [
         "Meta+1"
@@ -142,17 +153,21 @@
         "Meta+Ctrl+Alt+Shift+C"
         "Meta+Ctrl+Alt+Shift+G"
       ];
-      plasmashell."activate task manager entry 4" = [
+      plasmashell."activate task manager entry 3" = [
+        "Meta+3"
         "Meta+Ctrl+Alt+Shift+D"
+      ];
+      plasmashell."activate task manager entry 4" = [
         "Meta+4"
+        "Meta+Ctrl+Alt+Shift+T"
       ];
       plasmashell."activate task manager entry 5" = [
-        "Meta+Ctrl+Alt+Shift+T"
         "Meta+5"
+        "Meta+Ctrl+Alt+Shift+O"
       ];
       plasmashell."activate task manager entry 6" = [
-        "Meta+Ctrl+Alt+Shift+O"
         "Meta+6"
+        "Meta+Ctrl+Alt+Shift+P"
       ];
       plasmashell."activate task manager entry 7" = [
         "Meta+Ctrl+Alt+Shift+M"
@@ -225,7 +240,8 @@
       katerc.lspclient.SymbolSort = false;
       katerc.lspclient.SymbolTree = true;
       katerc.lspclient.TypeFormatting = false;
-      kcminputrc.Keyboard.RepeatDelay = 250;
+      kcminputrc.Keyboard.RepeatDelay = 200;
+      kcminputrc.Keyboard.RepeatRate = 50;
       kcminputrc."Libinput/1133/50504/Logitech USB Receiver Mouse".NaturalScroll = true;
       kded5rc.Module-browserintegrationreminder.autoload = false;
       kded5rc.Module-device_automounter.autoload = false;

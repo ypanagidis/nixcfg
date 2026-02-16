@@ -90,7 +90,7 @@
       # UI
       nvim-web-devicons
       {
-        plugin = neovim-ayu;
+        plugin = cyberdream-nvim;
         type = "lua";
         config = builtins.readFile ./nvim/lua/plugins/ui.lua;
       }

@@ -3,7 +3,7 @@
 {
   imports = [
     ./common.nix
-    ./plasma.nix
+    ../modules/des
     ../modules/browsers
     ../modules/obsedian.nix
   ];

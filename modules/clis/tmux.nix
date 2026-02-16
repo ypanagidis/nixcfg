@@ -1,16 +1,7 @@
-{ pkgs, ... }:
-let
-  kanagawa = pkgs.tmuxPlugins.mkTmuxPlugin {
-    pluginName = "kanagawa";
-    version = "unstable-2023-01-01";
-    src = pkgs.fetchFromGitHub {
-      owner = "Nybkox";
-      repo = "tmux-kanagawa";
-      rev = "master";
-      sha256 = "sha256-ldc++p2PcYdzoOLrd4PGSrueAGNWncdbc5k6wmFM9kQ=";
-    };
-  };
-in
+{
+  pkgs,
+  ...
+}:
 {
   programs.tmux = {
     enable = true;
@@ -32,18 +23,12 @@ in
       # mouse button copies text to the system clipboard.
       tmuxPlugins.yank
 
+      # CPU and RAM usage plugins
       {
-        plugin = kanagawa;
+        plugin = tmuxPlugins.cpu;
         extraConfig = ''
-          # =========================================================
-          # 0. PASSTHROUGH FOR LINKS & OSC SEQUENCES
-          # =========================================================
-            set -g allow-passthrough on
-            set -ga terminal-features "*:hyperlinks"
-            set -g @kanagawa-plugins "cpu-usage ram-usage git time"
-            set -g @kanagawa-show-powerline true
-            set -g @kanagawa-military-time true
-            set -g @kanagawa-show-empty-plugins true
+          set -g @cpu_percentage_format "%3.0f%%"
+          set -g @ram_percentage_format "%3.0f%%"
         '';
       }
     ];
@@ -51,6 +36,12 @@ in
     # 3. EXTRA CONFIGURATION
     # ---------------------------------------------------------
     extraConfig = ''
+      # =========================================================
+      # 0. PASSTHROUGH FOR LINKS & OSC SEQUENCES
+      # =========================================================
+      set -g allow-passthrough on
+      set -ga terminal-features "*:hyperlinks"
+
       # =========================================================
       # 1. KEYBOARD FIXES
       # =========================================================
@@ -77,7 +68,46 @@ in
       set -g window-active-style 'bg=default'
       set -g pane-border-style 'bg=default'
       set -g pane-active-border-style 'bg=default'
-      set -g status-style 'bg=default'
+
+      # =========================================================
+      # CYBERDREAM THEME - STATUS BAR
+      # =========================================================
+      # Cyberdream colors
+      cyberdream_bg="#16181a"
+      cyberdream_fg="#ffffff"
+      cyberdream_blue="#5ea1ff"
+      cyberdream_cyan="#5ef1ff"
+      cyberdream_green="#5eff6c"
+      cyberdream_purple="#bd5eff"
+      cyberdream_pink="#ff5ea0"
+      cyberdream_grey="#7b8496"
+      cyberdream_bg_highlight="#3c4048"
+
+      # Status bar styling
+      set -g status-style "bg=default,fg=$cyberdream_fg"
+      set -g status-left-length 100
+      set -g status-right-length 100
+      set -g status-position bottom
+      set -g status-justify left
+
+      # Left side: Session name
+      set -g status-left "#[fg=$cyberdream_blue,bold] #S #[fg=$cyberdream_grey]│ "
+
+      # Right side: Git branch (if in git repo), CPU, RAM, Time
+      set -g status-right "#[fg=$cyberdream_grey]#(cd #{pane_current_path}; git rev-parse --abbrev-ref HEAD 2>/dev/null | sed 's/^/ /' | sed 's/$/ │/')#[fg=$cyberdream_grey]CPU:#[fg=$cyberdream_green]#(iostat -c 1 2 | grep -A 1 'avg-cpu' | tail -1 | awk '{printf \"%.0f%%\", 100-$6}') #[fg=$cyberdream_grey]RAM:#[fg=$cyberdream_cyan]#(free -h | awk '/^Mem:/ {print $3\"/\"$2}') #[fg=$cyberdream_grey]│ #[fg=$cyberdream_purple]%H:%M #[fg=$cyberdream_grey]%a %d"
+
+      # Window status
+      set -g window-status-format "#[fg=$cyberdream_grey] #I:#W "
+      set -g window-status-current-format "#[fg=$cyberdream_blue,bold] #I:#W "
+      set -g window-status-separator ""
+
+      # Pane borders
+      set -g pane-border-style "fg=$cyberdream_bg_highlight"
+      set -g pane-active-border-style "fg=$cyberdream_blue"
+
+      # Messages
+      set -g message-style "bg=$cyberdream_bg_highlight,fg=$cyberdream_cyan"
+      set -g message-command-style "bg=$cyberdream_bg_highlight,fg=$cyberdream_cyan"
 
       # =========================================================
       # 3. PANE MANAGEMENT
