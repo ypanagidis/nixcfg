@@ -139,6 +139,7 @@ in
       alias cm="cd ~/Developer/Work/UP/mono/"
       alias cs="cd ~/Developer/sandbox/"
       alias cn="cd ~/nixcfg/"
+      alias mc="mc-prism"
       alias c="cursor ."
       alias n="nvim"
 

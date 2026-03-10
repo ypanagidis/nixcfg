@@ -67,7 +67,6 @@
     htop
 
     nil
-    prismlauncher
 
     lm_sensors
     smartmontools
@@ -97,7 +96,7 @@
     _JAVA_AWT_WM_NONREPARENTING = "1";
   };
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_6_18;
 
   powerManagement.powerDownCommands = ''
     for dev in /sys/bus/pci/devices/*/power/wakeup; do

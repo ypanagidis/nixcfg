@@ -22,6 +22,7 @@ in
     [
       pnpm
       nodejs
+      codex
       python3
       bun
       httpie

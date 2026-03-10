@@ -46,20 +46,20 @@
     };
   };
 
-  systemd.services.opencode-web = {
-    description = "Opencode Web Interface";
-    after = [ "network.target" ];
-    wantedBy = [ "multi-user.target" ];
-    serviceConfig = {
-      Type = "simple";
-      ExecStart = "${pkgs.opencode}/bin/opencode web --hostname 0.0.0.0 --port 4096 --mdns --mdns-domain nix-pc.local";
-      Restart = "on-failure";
-      RestartSec = "5s";
-      User = "yiannis";
-      WorkingDirectory = "/home/yiannis";
-    };
-  };
-
+  # systemd.services.opencode-web = {
+  #   description = "Opencode Web Interface";
+  #   after = [ "network.target" ];
+  #   wantedBy = [ "multi-user.target" ];
+  #   serviceConfig = {
+  #     Type = "simple";
+  #     ExecStart = "${pkgs.opencode}/bin/opencode web --hostname 0.0.0.0 --port 4096 --mdns --mdns-domain nix-pc.local";
+  #     Restart = "on-failure";
+  #     RestartSec = "5s";
+  #     User = "yiannis";
+  #     WorkingDirectory = "/home/yiannis";
+  #   };
+  # };
+  #
   environment.systemPackages = with pkgs; [
     liquidctl
     openrgb

@@ -93,11 +93,11 @@
 
 let
   pname = "helium";
-  version = "0.8.3.1";
+  version = "0.9.2.1";
 
   src = fetchurl {
     url = "https://github.com/imputnet/helium-linux/releases/download/${version}/helium-${version}-x86_64.AppImage";
-    hash = "sha256-GGltZ0/6rGQJixlGz3Na/vAwOlTeUR87WGyAPpLmtKM=";
+    hash = "sha256-guDBIr8NOD0GtjWznsVXlvb6llvdWHxREfDvXeP4m/w=";
   };
 
   # Extract AppImage contents using appimageTools
@@ -241,7 +241,7 @@ stdenvNoCC.mkDerivation {
 
     # Update desktop file
     substituteInPlace $out/share/applications/helium.desktop \
-      --replace-fail 'Exec=AppRun' "Exec=$out/bin/helium" \
+      --replace-fail 'Exec=helium' "Exec=$out/bin/helium" \
       --replace-fail 'Icon=helium' "Icon=$out/share/icons/hicolor/256x256/apps/helium.png"
 
     # Create wrapper script

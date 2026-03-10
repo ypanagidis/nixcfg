@@ -243,6 +243,7 @@
       kcminputrc.Keyboard.RepeatDelay = 200;
       kcminputrc.Keyboard.RepeatRate = 50;
       kcminputrc."Libinput/1133/50504/Logitech USB Receiver Mouse".NaturalScroll = true;
+      kcminputrc."Libinput/1133/45108/Logitech MX Master 3S".NaturalScroll = true;
       kded5rc.Module-browserintegrationreminder.autoload = false;
       kded5rc.Module-device_automounter.autoload = false;
       kdeglobals.General.TerminalApplication = "/nix/store/k3wrd5n1a709fkhrv52mwnxqyabl55jw-ghostty-1.2.3/bin/ghostty --gtk-single-instance=true";

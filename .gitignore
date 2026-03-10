@@ -1,1 +1,4 @@
 result
+hosts/nixos/nix-pc/system/firmware/BT_RAM_CODE_MT6639_2_1_hdr.bin
+hosts/nixos/nix-pc/system/firmware/mtkbt.dat
+hosts/nixos/nix-pc/system/firmware/asus-bt-driver.zip

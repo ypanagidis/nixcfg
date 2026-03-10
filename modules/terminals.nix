@@ -39,6 +39,10 @@ lib.mkMerge [
         window-decoration = false;
         gtk-titlebar = false;
         copy-on-select = "clipboard";
+        keybind = [
+          "ctrl+,=unbind"
+          "ctrl+alt+o=open_config"
+        ];
       };
     };
   })

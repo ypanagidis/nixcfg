@@ -58,6 +58,7 @@
           {
             nixpkgs.overlays = [ custom-packages.overlays.default ];
           }
+          custom-packages.nixosModules.nordvpn
           ./hosts/nixos/nix-pc/default.nix
           home-manager.nixosModules.home-manager
           {

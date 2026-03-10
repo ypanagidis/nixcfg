@@ -18,4 +18,9 @@
       addresses = true;
     };
   };
+
+  services.nordvpn = {
+    enable = true;
+    users = [ "yiannis" ];
+  };
 }

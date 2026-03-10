@@ -17,7 +17,9 @@ vim.lsp.config("tsgo", {
 })
 
 -- Configure oxlint to disable auto-fix on save
+-- oxlint >= 1.x uses `oxlint --lsp` instead of the old oxc_language_server binary
 vim.lsp.config("oxlint", {
+	cmd = { "oxlint", "--lsp" },
 	settings = {
 		oxc = {
 			fixKind = "none", -- Disable all auto-fixes (still shows diagnostics)

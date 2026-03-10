@@ -17,8 +17,9 @@
       google-chrome
       haruna
       bruno
+      opencode
     ])
-    ++ lib.optionals (pkgs ? opencode) [ pkgs.opencode ]
+    # ++ lib.optionals (pkgs ? opencode) [ pkgs.opencode ]
     ++ lib.optionals (pkgs ? claude) [ pkgs.claude ]
     ++ lib.optionals (pkgs ? winapps) [
       pkgs.winapps
