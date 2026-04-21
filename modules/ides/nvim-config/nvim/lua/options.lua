@@ -23,6 +23,7 @@ vim.o.incsearch = true
 -- Appearance
 vim.o.termguicolors = true
 vim.o.cursorline = true
+vim.o.linespace = 10
 vim.o.scrolloff = 8
 vim.o.sidescrolloff = 8
 

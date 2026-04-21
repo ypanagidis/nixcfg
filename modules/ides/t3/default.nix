@@ -2,10 +2,10 @@
 
 lib.mkIf pkgs.stdenv.isLinux (
   let
-    version = "0.0.3";
+    version = "0.0.21-nightly.20260421.84";
     src = pkgs.fetchurl {
       url = "https://github.com/pingdotgg/t3code/releases/download/v${version}/T3-Code-${version}-x86_64.AppImage";
-      hash = "sha256-1fKkfIFCLTutZBhPumqvo00PjmZO630wLnB9N5Ge5ZY=";
+      hash = "sha256-jkABGGsL5xvNRr8ByJUKvkbRjHtsxGafoOz8+J3HQRw=";
     };
 
     t3Package = pkgs.callPackage ./t3.nix {

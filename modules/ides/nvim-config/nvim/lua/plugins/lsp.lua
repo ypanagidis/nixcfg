@@ -18,8 +18,28 @@ vim.lsp.config("tsgo", {
 
 -- Configure oxlint to disable auto-fix on save
 -- oxlint >= 1.x uses `oxlint --lsp` instead of the old oxc_language_server binary
+-- Keep root markers explicit to avoid package.json breadth-first root detection in monorepos.
+local oxlint_root_markers = {
+	".oxlintrc.json",
+	".oxlintrc.jsonc",
+	"oxlint.config.ts",
+	"oxlint.config.mts",
+	"oxlint.config.cts",
+	"oxlint.config.js",
+	"oxlint.config.mjs",
+	"oxlint.config.cjs",
+}
+
 vim.lsp.config("oxlint", {
-	cmd = { "oxlint", "--lsp" },
+	-- Nested configs are still supported via root_dir selecting the nearest config marker.
+	cmd = { "oxlint", "--lsp", "--disable-nested-config" },
+	root_dir = function(bufnr, on_dir)
+		local fname = vim.api.nvim_buf_get_name(bufnr)
+		local root = vim.fs.root(fname, oxlint_root_markers) or vim.fs.root(fname, { ".git" })
+		if root then
+			on_dir(root)
+		end
+	end,
 	settings = {
 		oxc = {
 			fixKind = "none", -- Disable all auto-fixes (still shows diagnostics)
@@ -31,6 +51,7 @@ vim.lsp.config("oxlint", {
 vim.lsp.enable({
 	"tsgo",
 	"oxlint",
+	"tailwindcss",
 	-- Add more servers as needed:
 	-- "lua_ls",
 	-- "pyright",

@@ -161,6 +161,13 @@
         config = builtins.readFile ./nvim/lua/plugins/colorizer.lua;
       }
 
+      # Markdown rendered preview in buffer
+      {
+        plugin = render-markdown-nvim;
+        type = "lua";
+        config = builtins.readFile ./nvim/lua/plugins/markdown.lua;
+      }
+
     ];
 
     extraPackages = with pkgs; [
@@ -169,6 +176,7 @@
       typescript-language-server
       tsgo # TypeScript 7 native compiler
       oxlint
+      tailwindcss-language-server
 
       # Formatters
       prettierd

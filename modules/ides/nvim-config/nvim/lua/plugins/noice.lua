@@ -34,6 +34,22 @@ require("noice").setup({
       },
       opts = { skip = true },
     },
+    -- Hide noisy LSP empty-info notifications (e.g. from secondary clients)
+    {
+      filter = {
+        event = "msg_show",
+        kind = "",
+        find = "No information available",
+      },
+      opts = { skip = true },
+    },
+    {
+      filter = {
+        event = "notify",
+        find = "No information available",
+      },
+      opts = { skip = true },
+    },
   },
   views = {
     hover = {

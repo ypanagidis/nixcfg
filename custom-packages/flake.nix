@@ -75,20 +75,20 @@
           # pscale
           pscale = nixpkgs-unstable.legacyPackages.${system}.pscale;
 
-          # oxfmt 0.33.0 (latest)
+          # oxfmt 0.44.0 (latest)
           oxfmt =
             let
               base = nixpkgs-unstable.legacyPackages.${system}.oxfmt;
             in
             base.overrideAttrs (old: rec {
-              version = "0.33.0";
+              version = "0.44.0";
               src = final.fetchFromGitHub {
                 owner = "oxc-project";
                 repo = "oxc";
                 tag = "oxfmt_v${version}";
-                hash = "sha256-k1VW9FbGf/tsVhm/ZIj2yKHgxg0zgk4EEK6MPdMXcys=";
+                hash = "sha256-o4vacOuKNUdLdkd6v94jQcevA8dCXG32fYmO2ZEj330=";
               };
-              # No patchedDependencies in 0.33.0, so remove the postPatch
+              # No patchedDependencies in 0.44.0, so remove the postPatch
               postPatch = "";
               env = (old.env or { }) // {
                 OXC_VERSION = version;
@@ -97,29 +97,29 @@
                 inherit src;
                 pname = "oxfmt";
                 inherit version;
-                hash = "sha256-7/lKwf63ky1ffIbdHO3/PKjEXTWQzeHpohu8H4URSzo=";
+                hash = "sha256-lppnmePEmbguoDDGyIM3gWbEX0ShgymoCjvrx1tK2Lw=";
               };
               pnpmDeps = final.fetchPnpmDeps {
                 inherit src version;
                 pname = "oxfmt";
                 pnpm = final.pnpm_10;
                 fetcherVersion = 2;
-                hash = "sha256-l1ykoiYrjkRJOnRgZv48Km1vMztwESNnRu1W9WAIAC4=";
+                hash = "sha256-RvJnpb5+rFThGXpMX8uY0/D/3i62/RMdcOPFYMT1/uA=";
               };
             });
 
-          # oxlint 1.48.0 (latest, with oxc_language_server)
+          # oxlint 1.59.0 (latest)
           oxlint =
             let
               base = nixpkgs-unstable.legacyPackages.${system}.oxlint;
             in
             base.overrideAttrs (old: rec {
-              version = "1.48.0";
+              version = "1.59.0";
               src = final.fetchFromGitHub {
                 owner = "oxc-project";
                 repo = "oxc";
                 tag = "oxlint_v${version}";
-                hash = "sha256-k1VW9FbGf/tsVhm/ZIj2yKHgxg0zgk4EEK6MPdMXcys=";
+                hash = "sha256-o4vacOuKNUdLdkd6v94jQcevA8dCXG32fYmO2ZEj330=";
               };
               env = (old.env or { }) // {
                 OXC_VERSION = version;
@@ -128,7 +128,7 @@
                 inherit src;
                 pname = "oxlint";
                 inherit version;
-                hash = "sha256-7/lKwf63ky1ffIbdHO3/PKjEXTWQzeHpohu8H4URSzo=";
+                hash = "sha256-lppnmePEmbguoDDGyIM3gWbEX0ShgymoCjvrx1tK2Lw=";
               };
             });
 
@@ -148,10 +148,7 @@
         }
         // lib.optionalAttrs (hasPackage opencode-flake "default") {
           opencode = opencode-flake.packages.${system}.default.overrideAttrs (old: {
-            preBuild = (old.preBuild or "") + ''
-              mkdir -p .github
-              : > .github/TEAM_MEMBERS
-            '';
+            patches = (old.patches or [ ]) ++ [ ./patches/opencode-generate-no-prettier.patch ];
           });
         }
         // lib.optionalAttrs (hasPackage claude "default") {

@@ -28,7 +28,20 @@ let
       local original_dir="$PWD"
       cd ~/nixcfg/modules/browsers/helium || return 1
 
-      if ./update-helium.sh; then
+      if ./update-helium.sh "$@"; then
+        echo "Rebuilding..."
+        ${linuxRebuild}
+      else
+        echo "No update needed or fetch failed"
+      fi
+
+      cd "$original_dir"
+    }
+    ut3() {
+      local original_dir="$PWD"
+      cd ~/nixcfg/modules/ides/t3 || return 1
+
+      if ./update-t3.sh "$@"; then
         echo "Rebuilding..."
         ${linuxRebuild}
       else
@@ -132,12 +145,27 @@ in
         pushd ~/nixcfg > /dev/null && ${rebuildCommand} && popd > /dev/null
       }
 
+      function ocu() {
+        local original_dir="$PWD"
+        cd ~/nixcfg || return 1
+
+        if nix flake update custom-packages/nixpkgs-opencode custom-packages/opencode-flake; then
+          echo "Rebuilding..."
+          re
+        else
+          echo "Opencode update failed"
+        fi
+
+        cd "$original_dir"
+      }
+
       ${linuxUpdateHelpers}
 
       alias lgit="lazygit"
       alias p="pnpm"
       alias cm="cd ~/Developer/Work/UP/mono/"
       alias cs="cd ~/Developer/sandbox/"
+      alias sa="cd ~/Developer/OS/Sealant/"
       alias cn="cd ~/nixcfg/"
       alias mc="mc-prism"
       alias c="cursor ."

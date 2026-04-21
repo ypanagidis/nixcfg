@@ -153,11 +153,11 @@
 		"when": "editorTextFocus"
 	},
 	{
-		"key": "cmd+i",
+		"key": "ctrl+alt+i",
 		"command": "composerMode.agent"
 	},
 	{
-		"key": "cmd+i",
+		"key": "ctrl+alt+i",
 		"command": "composerMode.agent"
 	},
 

@@ -151,7 +151,6 @@
       plasmashell."activate task manager entry 2" = [
         "Meta+2"
         "Meta+Ctrl+Alt+Shift+C"
-        "Meta+Ctrl+Alt+Shift+G"
       ];
       plasmashell."activate task manager entry 3" = [
         "Meta+3"
@@ -175,6 +174,7 @@
       ];
       plasmashell."activate task manager entry 8" = [
         "Meta+Ctrl+Alt+Shift+R"
+        "Meta+Ctrl+Alt+Shift+G"
         "Meta+8"
       ];
       plasmashell."activate task manager entry 9" = "Meta+9";
@@ -309,7 +309,7 @@
       plasmarc.Wallpapers.usersWallpapers = "";
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments/3/Applets/30/Configuration/General".launchers =
         {
-          value = "applications:helium.desktop,applications:com.mitchellh.ghostty.desktop,applications:discord.desktop,applications:io.github.nokse22.high-tide.desktop,applications:obsidian.desktop,applications:datagrip.desktop,applications:bruno.desktop,applications:systemsettings.desktop,preferred://filemanager";
+          value = "applications:helium.desktop,applications:com.mitchellh.ghostty.desktop,applications:discord.desktop,applications:io.github.nokse22.high-tide.desktop,applications:obsidian.desktop,applications:datagrip.desktop,applications:bruno.desktop,applications:code.desktop,applications:systemsettings.desktop,preferred://filemanager";
           escapeValue = false;
         };
       spectaclerc.Annotations.annotationToolType = 9;

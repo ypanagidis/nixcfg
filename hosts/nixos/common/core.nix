@@ -16,7 +16,18 @@
   time.timeZone = "Europe/Athens";
   i18n.defaultLocale = "en_US.UTF-8";
 
-  virtualisation.docker.enable = true;
+  virtualisation.docker = {
+    enable = true;
+    daemon.settings = {
+      runtimes = {
+        runsc = {
+          path = "${pkgs.gvisor}/bin/runsc";
+          runtimeArgs = [ "--platform=ptrace" ];
+        };
+      };
+    };
+  };
+
   virtualisation.libvirtd = {
     enable = true;
     qemu = {
@@ -43,7 +54,6 @@
   };
 
   programs.firefox.enable = true;
-  programs.nix-ld.enable = true;
 
   environment.systemPackages = with pkgs; [
     vim
@@ -82,6 +92,7 @@
     expat
 
     virt-manager
+    gvisor
     freerdp
     (pkgs.runCommand "xfreerdp3-compat" { } ''
       mkdir -p $out/bin

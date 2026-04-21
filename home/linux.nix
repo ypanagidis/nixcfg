@@ -14,10 +14,12 @@
       protonup-qt
       protontricks
       mangohud
+      ffmpeg-full
       google-chrome
       haruna
       bruno
       opencode
+      playwright-mcp
     ])
     # ++ lib.optionals (pkgs ? opencode) [ pkgs.opencode ]
     ++ lib.optionals (pkgs ? claude) [ pkgs.claude ]
@@ -33,6 +35,15 @@
     RDP_IP="192.168.122.85"
     WAFLAVOR="libvirt"
   '';
+
+  xdg.configFile."opencode/opencode.json".text = builtins.toJSON {
+    "$schema" = "https://opencode.ai/config.json";
+    mcp.playwright = {
+      type = "local";
+      command = [ "mcp-server-playwright" ];
+      enabled = true;
+    };
+  };
 
   programs.ssh.matchBlocks.github.identityFile = "~/.ssh/id_ed25519";
 }

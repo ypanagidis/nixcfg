@@ -1,7 +1,7 @@
 {
-  "editor.fontSize": 18,
-  "terminal.external.osxExec": "Ghostty.app",
-  "terminal.integrated.fontSize": 18,
+  "editor.fontSize": 19,
+  "terminal.external.linuxExec": "konsole",
+  "terminal.integrated.fontSize": 19,
   "workbench.activityBar.location": "bottom",
   "workbench.editor.labelFormat": "default",
   "breadcrumbs.enabled": true,
@@ -173,7 +173,7 @@
   "editor.occurrencesHighlight": "off",
   "editor.gotoLocation.multipleDefinitions": "goto",
   "editor.wordWrap": "on",
-  "typescript.tsserver.nodePath": "/Users/yiannis/.nvm/versions/node/v24.10.0/bin/node",
+  "typescript.tsserver.nodePath": "/etc/profiles/per-user/yiannis/bin/node",
   "typescript.tsserver.log": "off",
   "amp.url": "https://ampcode.com/",
   "editor.fontFamily": "Menlo",
@@ -203,5 +203,11 @@
   "biome.lsp.bin": "./node_modules/.bin/biome",
   "typescript.experimental.useTsgo": true,
   "cursor.composer.shouldChimeAfterChatFinishes": true,
-  "workbench.colorTheme": "Ayu Mirage"
+  "workbench.colorTheme": "Vesper",
+  "window.restoreWindows": "all",
+  "window.openFoldersInNewWindow": "off",
+  "window.openFilesInNewWindow": "off",
+  "window.openWithoutArgumentsInNewWindow": "off",
+  "security.promptForRemoteFileProtocolHandling": false,
+  "workbench.iconTheme": "ayu"
 }
