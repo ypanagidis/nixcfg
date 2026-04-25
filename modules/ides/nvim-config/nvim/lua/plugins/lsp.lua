@@ -1,50 +1,14 @@
 -- LSP Configuration
 
--- Configure tsgo with more memory and inlay hints
+-- Configure tsgo with more memory
 vim.lsp.config("tsgo", {
 	init_options = {
-		maxTsServerMemory = 8192,
-		preferences = {
-			includeInlayParameterNameHints = "all",
-			includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-			includeInlayFunctionParameterTypeHints = true,
-			includeInlayVariableTypeHints = true,
-			includeInlayPropertyDeclarationTypeHints = true,
-			includeInlayFunctionLikeReturnTypeHints = true,
-			includeInlayEnumMemberValueHints = true,
-		},
+		maxTsServerMemory = 16384,
 	},
 })
 
--- Configure oxlint to disable auto-fix on save
--- oxlint >= 1.x uses `oxlint --lsp` instead of the old oxc_language_server binary
--- Keep root markers explicit to avoid package.json breadth-first root detection in monorepos.
-local oxlint_root_markers = {
-	".oxlintrc.json",
-	".oxlintrc.jsonc",
-	"oxlint.config.ts",
-	"oxlint.config.mts",
-	"oxlint.config.cts",
-	"oxlint.config.js",
-	"oxlint.config.mjs",
-	"oxlint.config.cjs",
-}
-
 vim.lsp.config("oxlint", {
-	-- Nested configs are still supported via root_dir selecting the nearest config marker.
-	cmd = { "oxlint", "--lsp", "--disable-nested-config" },
-	root_dir = function(bufnr, on_dir)
-		local fname = vim.api.nvim_buf_get_name(bufnr)
-		local root = vim.fs.root(fname, oxlint_root_markers) or vim.fs.root(fname, { ".git" })
-		if root then
-			on_dir(root)
-		end
-	end,
-	settings = {
-		oxc = {
-			fixKind = "none", -- Disable all auto-fixes (still shows diagnostics)
-		},
-	},
+	cmd = { "oxlint", "--lsp" },
 })
 
 -- Enable servers (configs come from nvim-lspconfig)
