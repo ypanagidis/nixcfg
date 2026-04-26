@@ -5,6 +5,21 @@ vim.lsp.config("tsgo", {
 	init_options = {
 		maxTsServerMemory = 16384,
 	},
+	settings = {
+		typescript = {
+			inlayHints = {
+				parameterNames = {
+					enabled = "all",
+					suppressWhenArgumentMatchesName = false,
+				},
+				parameterTypes = { enabled = true },
+				variableTypes = { enabled = true },
+				propertyDeclarationTypes = { enabled = true },
+				functionLikeReturnTypes = { enabled = true },
+				enumMemberValues = { enabled = true },
+			},
+		},
+	},
 })
 
 vim.lsp.config("oxlint", {
