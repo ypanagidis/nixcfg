@@ -15,7 +15,7 @@ vim.lsp.config("oxlint", {
 vim.lsp.enable({
 	"tsgo",
 	"oxlint",
-	"tailwindcss",
+	-- "tailwindcss",
 	-- Add more servers as needed:
 	-- "lua_ls",
 	-- "pyright",

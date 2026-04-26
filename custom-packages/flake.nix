@@ -132,6 +132,31 @@
               };
             });
 
+          # tailwindcss-language-server 0.14.29 (latest)
+          tailwindcss-language-server = prev.tailwindcss-language-server.overrideAttrs (old: rec {
+            version = "0.14.29";
+            src = final.applyPatches {
+              src = final.fetchFromGitHub {
+                owner = "tailwindlabs";
+                repo = "tailwindcss-intellisense";
+                tag = "v${version}";
+                hash = "sha256-o5NyU52j3ZyuKWT4lL5U78qz4TBbXerylTl2fdvwqlk=";
+              };
+              postPatch = ''
+                substituteInPlace packages/tailwindcss-language-server/package.json \
+                  --replace-fail '"@tailwindcss/oxide": "^4.1.15"' '"@tailwindcss/oxide": "^4.1.14"'
+              '';
+            };
+            pnpmDeps = final.fetchPnpmDeps {
+              inherit src version;
+              pname = old.pname;
+              pnpmWorkspaces = old.pnpmWorkspaces;
+              pnpm = final.pnpm_9;
+              fetcherVersion = 1;
+              hash = "sha256-wY/tJSh5LUttBVNipU1lLF2jfhX99tK3QP4yZUlp/zw=";
+            };
+          });
+
           # Custom builds
           tsgo =
             let
