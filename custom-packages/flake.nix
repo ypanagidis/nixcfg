@@ -7,7 +7,7 @@
     nixpkgs-opencode.url = "github:NixOS/nixpkgs";
 
     typescript-go = {
-      url = "github:microsoft/typescript-go";
+      url = "github:microsoft/typescript-go/fdea8102676c0f3f5027b026a9bd4f289c1c471c";
       flake = false;
     };
 
@@ -58,12 +58,50 @@
         let
           lib = prev.lib;
           system = prev.stdenv.hostPlatform.system;
+          opencodeBunVersion = "1.3.13";
+          opencodeBunSources = {
+            aarch64-darwin = {
+              url = "https://github.com/oven-sh/bun/releases/download/bun-v${opencodeBunVersion}/bun-darwin-aarch64.zip";
+              hash = "sha256-VGfj9l26Umuf6pjwzOBO+vwMY+Fpcz7Ce4dqOtMtoZA=";
+            };
+            aarch64-linux = {
+              url = "https://github.com/oven-sh/bun/releases/download/bun-v${opencodeBunVersion}/bun-linux-aarch64.zip";
+              hash = "sha256-cLrkGzkIsKEg4eWMXIrzDnSvrjuNEbDT/djnh937SyI=";
+            };
+            x86_64-darwin = {
+              url = "https://github.com/oven-sh/bun/releases/download/bun-v${opencodeBunVersion}/bun-darwin-x64-baseline.zip";
+              hash = "sha256-qYumpIDyL9qbNDYmuQak4mqlNhi/hdK8WSjs8rpF8O0=";
+            };
+            x86_64-linux = {
+              url = "https://github.com/oven-sh/bun/releases/download/bun-v${opencodeBunVersion}/bun-linux-x64.zip";
+              hash = "sha256-ecB3H6i5LDOq5B4VoODTB+qZ0OLwAxfHHGxTI3p44lo=";
+            };
+          };
 
           hasSystemPackages =
             flake: builtins.hasAttr "packages" flake && builtins.hasAttr system flake.packages;
           hasPackage =
             flake: packageName:
             hasSystemPackages flake && builtins.hasAttr packageName flake.packages.${system};
+          opencodePkgs =
+            if hasPackage opencode-flake "default" then
+              import inputs.nixpkgs-opencode {
+                inherit system;
+                overlays = [
+                  (
+                    final': prev':
+                    lib.optionalAttrs (builtins.hasAttr system opencodeBunSources) {
+                      bun = prev'.bun.overrideAttrs (_: {
+                        version = opencodeBunVersion;
+                        src = final'.fetchurl opencodeBunSources.${system};
+                      });
+                    }
+                  )
+                  opencode-flake.overlays.default
+                ];
+              }
+            else
+              null;
         in
         {
           # VSCode extensions
@@ -164,15 +202,15 @@
             in
             final.buildGoModule.override { go = go126; } {
               pname = "tsgo";
-              version = "7.0.0-dev";
+              version = "7.0.0-dev.20260421.2";
               src = inputs.typescript-go;
-              vendorHash = "sha256-dUO6rCw8BrIJ+igFrntTIro4k1PH69G2J1IWPKsGzfM=";
+              vendorHash = "sha256-n2wBDcMSKQGUJlTgCuJbKPTYOCiwkMpbvavqIrRvzS8=";
               subPackages = [ "cmd/tsgo" ];
               doCheck = false;
             };
         }
         // lib.optionalAttrs (hasPackage opencode-flake "default") {
-          opencode = opencode-flake.packages.${system}.default.overrideAttrs (old: {
+          opencode = opencodePkgs.opencode.overrideAttrs (old: {
             patches = (old.patches or [ ]) ++ [ ./patches/opencode-generate-no-prettier.patch ];
           });
         }
