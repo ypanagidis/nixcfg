@@ -31,6 +31,7 @@
       "datagrip"
       "discord"
       "claude-code"
+      "docker"
       "font-jetbrains-mono-nerd-font"
       "ghostty"
       "google-chrome"
